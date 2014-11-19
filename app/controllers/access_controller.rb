@@ -22,9 +22,8 @@ class AccessController < ApplicationController
       render :login
     else
       session[:user_id] = authorized_user.id
-      session[:admin] = authorized_user.admin
       flash[:success] = "You are now logged in."
-      redirect_to users_path
+      redirect_to user_path(session[:user_id])
     end
   end
 
@@ -32,7 +31,7 @@ class AccessController < ApplicationController
     session[:user_id] = nil
     session[:admin] = nil
     flash[:notice] = "Logged out"
-    redirect_to login_path
+    redirect_to ('/')
   end
 
 
