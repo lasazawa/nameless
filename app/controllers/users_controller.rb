@@ -23,6 +23,11 @@ def show
   @user = User.find(params[:id])
 end
 
+def edit
+  @tags = Tag.all
+  @user = User.find(params[:id])
+end
+
 
 #########
 
