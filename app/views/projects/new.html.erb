@@ -5,9 +5,12 @@
     <%= p.label(:name, "Name", class: "control-label")%>
     <%= p.text_field(:name, autofocus: true, class: "form-control" , placeholder: "bike shop, tech company, produce store")%>
   </div>
-    <div class = "form-group">
+  <div class = "form-group">
     <%= p.label(:description, "Description", class: "control-label")%>
     <%= p.text_field(:description, autofocus: true, class: "form-control" )%>
+  </div>
+  <div class = "form-group">
+    <%= p.label(:photo, "Add Photos", class: "control-label")%>
   </div>
   <%= p.submit("Add Project", class: "btn btn-lg btn-info") %>
 
