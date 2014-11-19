@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 root 'access#login'
 post 'login', to: 'access#attempt_login'
+get 'logout', to: 'access#logout'
 
 #Users
 resources :users, only: [:new, :create, :show, :edit, :update] do
