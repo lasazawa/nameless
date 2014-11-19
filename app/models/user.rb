@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_many :pojects
+	has_many :projects
 	has_many :votes
 	has_many :names, :through => :votes
 	has_many :usertags
