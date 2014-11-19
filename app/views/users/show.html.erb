@@ -1,1 +1,62 @@
-hello world
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 content">
+
+
+<h1> photo uploading </h1>
+
+      <span class="btn btn-default btn-file">Browse <input type="file" id="fileUploader"></span>
+      <button class="btn btn-default" id="fileUploadBtn">Submit</button>
+      <input type="text" id="url">
+      <img id="pic" src="" height="300" width="300">
+
+<hr>
+
+<h1> email </h1>
+
+
+
+<hr>
+
+</div>
+</div>
+
+
+</body>
+</html>
+
+<script>  /// photo uploading
+
+$(document).ready(function() {
+
+    var parseAPPID = "WaIQr0ALAedB6JhACwDdqAJXN5m0kBizefvqIRMd";
+    var parseJSID = "JWFUQveemVMqiwfgLY5GVDrjCF9t3HQpv1wvE0Z1";
+
+    //Initialize Parse
+    Parse.initialize(parseAPPID,parseJSID);
+
+    $("#fileUploadBtn").on("click", function(e) {
+
+        var fileUploadControl = $("#fileUploader")[0];
+        if (fileUploadControl.files.length > 0) {
+            var file = fileUploadControl.files[0];
+            var name = "photo.jpg";
+
+            console.log("here goes nothing...");
+            $('#pic').attr('src', "<%= image_path('loader.gif') %>");
+
+            var parseFile = new Parse.File(name, file);
+            parseFile.save().then(
+                function() {
+                    console.log("Woot!");
+                    console.log(parseFile.url());
+                    $('#url').val(parseFile.url());
+                    $('#pic').attr('src', parseFile.url());
+                },
+                function(error) {
+                    console.log("Error");
+                    console.dir(error);
+            });
+        }
+    });
+});
+</script>
