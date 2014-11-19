@@ -1,1 +1,74 @@
-edit.html.erb
+<div class="row">
+	<div class="col-md-6 col-md-offset-3 content">
+
+
+		<% if @user.errors.any? %>
+		<ul class = "text-danger list-unstyled">
+			<%  for err in @user.errors.full_messages %>
+			<li>
+				<%= err%>
+			</li>
+			<% end %>
+		</ul>
+		<% end %>
+
+
+		<%= form_for(@user, url: edit_user_path(@user.id), method: "put") do |f|%>
+		<br>
+		<div class="form-group">
+			<%= f.label(:firstname, class: "control-label") %>
+			<%= f.text_field :firstname, autofocus: true, class: "form-control" %>
+
+		</div>
+		<div class="form-group">
+			<%= f.label(:lastname, class: "control-label") %>
+			<%= f.text_field :lastname, class: "form-control" %>
+
+		</div>
+		<div class="form-group">
+			<%= f.label(:age, class: "control-label") %>
+			<%= f.text_field :age, class: "form-control" %>
+
+		</div>
+		<div class="form-group">
+
+			<%= f.label(:city, class: "control-label") %>
+			<%= f.text_field(:city, class: "form-control") %>
+		</div>
+		<div class="form-group">
+		<div class="form-group">
+			<% @tags.each do |t| %>
+				<button type="button"class="tag btn btn-default btn-sm" id="<%= t.id %>" style="margin-top:5px"><%= t.name %></button>
+			<% end %>
+
+		</div>
+
+			<%= f.submit("Add details", class: "btn btn-primary") %>
+		</div>
+
+		<% end %>
+	</div>
+
+</div>
+</div>
+<script type="text/javascript">
+	var tags = []
+	$(document).ready(function(){
+		$(".tag").on("click", function(event) {
+			if (tags.indexOf(event.target.id) !== -1) {
+				tags.splice( $.inArray(event.target.id, tags), 1 );
+				// tags.removeItem(event.target.id)
+				$(this).toggleClass("active")
+				console.log(tags)
+			}
+			else {
+				tags.push(event.target.id)
+				$(this).toggleClass("active")
+				console.log(tags)
+			}
+			
+
+		})
+	})
+	
+</script>
