@@ -20,7 +20,7 @@ Wireframes
 Link here
 
 ERD
-Link here
+https://docs.google.com/drawings/d/19WDTumkfX1lS1qCgPbF5TjMUlbM3f-Nfy_pq_XEwGJ0/edit
 
 API's
 Braintree
