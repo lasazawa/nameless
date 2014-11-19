@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_action :confirm_logged_in, except: [:new, :create]
   before_action :prevent_login_signup, only: [:new, :create]
-
+  before_action :current_user
 
  def new
     @user = User.new
