@@ -2,12 +2,13 @@ Rails.application.routes.draw do
 
 
 root 'access#login'
+post 'login', to: 'access#attempt_login'
 
 #Users
-resources :users, only: [:new, :create, :show, :edit] do
+resources :users, only: [:new, :create, :show, :edit, :update] do
 
   #Projects
-  resources :projects,  only: [:show, :new, :create, :edit]
+  resources :projects,  only: [:show, :new, :create, :edit,  :update]
 
 end
 
