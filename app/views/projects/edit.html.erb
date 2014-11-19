@@ -1,6 +1,6 @@
-<h1>Create a Project</h1>
+<h1>Edit <%= @project.name %></h1>
 
-<%= form_for(@project, url: user_projects_path, class: "form-horizontal") do |p| %>
+<%= form_for(@project, url: user_project_path, method: "PUT", class: "form-horizontal") do |p| %>
   <div class = "form-group">
     <%= p.label(:name, "Name", class: "control-label")%>
     <%= p.text_field(:name, autofocus: true, class: "form-control" , placeholder: "bike shop, tech company, produce store")%>
@@ -9,6 +9,6 @@
     <%= p.label(:description, "Description", class: "control-label")%>
     <%= p.text_field(:description, autofocus: true, class: "form-control" )%>
   </div>
-  <%= p.submit("Add Project", class: "btn btn-lg btn-info") %>
+  <%= p.submit("Save Changes", class: "btn btn-lg btn-info") %>
 
-<% end %>
+  <% end %>

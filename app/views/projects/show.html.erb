@@ -1,1 +1,4 @@
-show.html.erb
+<h1><%= @project.name %> Project</h1>
+<%= @project.description %>
+
+<%= link_to("Edit", edit_user_project_path(1, @project)) %>
