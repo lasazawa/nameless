@@ -1,28 +1,39 @@
-== README
+Nameless
+Have you ever had to name a new application?  IT IS SOOO HARD TO DO IT WELL.  AHAHAHA
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Nameless is an application that helps you name your projects.  Create an account, describe your project, and have your community and like-minded people help you sort out the bet name.
 
-Things you may want to cover:
+By default Nameless will invite the people in your community that you choose to 'vote' on any name ideas you have & suggest other names for your idea.
 
-* Ruby version
+If you want to expand your audience, Nameless will for a small fee help you find other people who share interests with your business and poll them as well.
 
-* System dependencies
+In no time you will have an excellent name for your killer project - be it an app, a store, or a charity!
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Hurray!
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+Link to Heroku
+N/A
+
+Wireframes
+Link here
+
+ERD
+Link here
+
+API's
+Braintree
+Send Grid
+Parse
+
+Task Management
+https://app.asana.com/0/20551853904437/20551853904441
+
+Contributors
+Sam Lessin
+Josh Notowitz
+Lauren Asazawa
+
+
+
