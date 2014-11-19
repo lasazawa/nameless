@@ -43,6 +43,8 @@
     <% else %>
       <p class="navbar-text navbar-right"><a href = "/logout">logout</a></p>
       <p class="navbar-text navbar-right"><%=@current_user.username%> </p>
+
+      <%= link_to("Add Project", new_user_project_path(@current_user.id)) %>
     <% end %>
 
 
