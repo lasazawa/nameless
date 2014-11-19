@@ -2,6 +2,7 @@ class AccessController < ApplicationController
 
   before_action :confirm_logged_in, except: [:attempt_login, :login, :logout]
   before_action :prevent_login_signup, only: [:login]
+  before_action :current_user
 
   def login
   end
