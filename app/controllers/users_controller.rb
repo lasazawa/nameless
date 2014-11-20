@@ -53,7 +53,7 @@ end
     params.require(:user).permit(:username, :password, :password_confirmation)
   end
   def user_params_update
-    params.require(:user).permit(:firstname, :lastname, :age, :city)
+    params.require(:user).permit(:firstname, :lastname, :age, :city, :picurl)
   end
 
 end
