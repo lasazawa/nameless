@@ -1,6 +1,5 @@
 /// photo uploading
-
-$(document).ready(function() {
+function engine(){
 
     var parseAPPID = "WaIQr0ALAedB6JhACwDdqAJXN5m0kBizefvqIRMd";
     var parseJSID = "JWFUQveemVMqiwfgLY5GVDrjCF9t3HQpv1wvE0Z1";
@@ -36,5 +35,4 @@ $(document).ready(function() {
   $( ".project-tag" ).click(function() {
     $( this ).toggleClass( "active" );
   });
-
-});
+}
