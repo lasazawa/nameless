@@ -9,7 +9,7 @@ $(document).ready(function() {
 
     //Initialize Parse
     Parse.initialize(parseAPPID,parseJSID);
-    $("#fileUploadBtn").on("click", function(e) {
+    $("#fileUploader").on("change", function(e) {
       e.preventDefault();
 
         var fileUploadControl = $("#fileUploader")[0];
@@ -18,7 +18,7 @@ $(document).ready(function() {
             var name = "photo.jpg";
 
             console.log("here goes nothing...");
-            $('#pic').attr('src', "<%= image_path('loader.gif') %>");
+            $('#pic').attr('src', "/assets/loader.gif");
 
             var parseFile = new Parse.File(name, file);
             parseFile.save().then(
