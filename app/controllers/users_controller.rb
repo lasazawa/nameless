@@ -27,20 +27,33 @@ end
 def edit
   @tags = Tag.all
   @user = User.find(params[:id])
+  @tagged = []
+  @user.tags.each do |t|
+    @tagged << t.id
+  end
 end
 
  def update
     @user = User.find(params[:id])
-    @user.update_columns(user_params)
+    @user.update_columns(user_params_update)
     redirect_to user_path(@user.id)
+    @user.tags = []
+    tags = params[:tags]
+    tags_array = tags.split(",")
+    tags_array.each do |t|
+      tag = Tag.find(t)
+      @user.tags << tag
+    end
  end
-
 
 #########
 
   private
-  def user_params
-    params.require(:user).permit(:firstname, :lastname, :age, :city, :username, :password, :password_confirmation)
+   def user_params
+    params.require(:user).permit(:username, :password, :password_confirmation)
+  end
+  def user_params_update
+    params.require(:user).permit(:firstname, :lastname, :age, :city)
   end
 
 end
