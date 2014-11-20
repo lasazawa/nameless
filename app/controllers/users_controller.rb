@@ -28,12 +28,18 @@ def edit
   @user = User.find(params[:id])
 end
 
+ def update
+    @user = User.find(params[:id])
+    @user.update_columns(user_params)
+    redirect_to user_path(@user.id)
+ end
+
 
 #########
 
   private
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation)
+    params.require(:user).permit(:firstname, :lastname, :age, :city)
   end
 
 end
