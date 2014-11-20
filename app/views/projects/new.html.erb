@@ -33,9 +33,6 @@
       <h4>Upload photos</h4>
       <img id="pic" src="" height="120" width="120">
       <span class="btn btn-default btn-file">Browse <input type="file" id="fileUploader"></span>
-      <button class="btn btn-default" id="fileUploadBtn">Submit</button>
-      <%= p.hidden_field(:photo_url, id: "url" ) %>
-      <!-- submit -->
       <br>
       <hr>
       <%= p.submit("Add Project", class: "btn btn-lg btn-primary right") %>
