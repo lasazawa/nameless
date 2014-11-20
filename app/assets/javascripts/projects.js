@@ -1,39 +1,40 @@
-/// photo uploading
+/// new user & project functions
 
-var projectTags = [];
+function engine(){
 
-$(document).ready(function() {
+    $(document).ready(function() {
 
-    var parseAPPID = "WaIQr0ALAedB6JhACwDdqAJXN5m0kBizefvqIRMd";
-    var parseJSID = "JWFUQveemVMqiwfgLY5GVDrjCF9t3HQpv1wvE0Z1";
+        var projectTags = [];
 
-    //Initialize Parse
-    Parse.initialize(parseAPPID,parseJSID);
-    $("#fileUploader").on("change", function(e) {
-      e.preventDefault();
+        var parseAPPID = "WaIQr0ALAedB6JhACwDdqAJXN5m0kBizefvqIRMd";
+        var parseJSID = "JWFUQveemVMqiwfgLY5GVDrjCF9t3HQpv1wvE0Z1";
 
-        var fileUploadControl = $("#fileUploader")[0];
-        if (fileUploadControl.files.length > 0) {
-            var file = fileUploadControl.files[0];
-            var name = "photo.jpg";
+        //Initialize Parse
+        Parse.initialize(parseAPPID,parseJSID);
+        $("#fileUploader").on("change", function(e) {
+          e.preventDefault();
 
-            console.log("here goes nothing...");
-            $('#pic').attr('src', "/assets/loader.gif");
+            var fileUploadControl = $("#fileUploader")[0];
+            if (fileUploadControl.files.length > 0) {
+                var file = fileUploadControl.files[0];
+                var name = "photo.jpg";
 
-            var parseFile = new Parse.File(name, file);
-            parseFile.save().then(
-                function() {
-                    console.log("Woot!");
-                    console.log(parseFile.url());
-                    $('#url').val(parseFile.url());
-                    $('#pic').attr('src', parseFile.url());
-                },
-                function(error) {
-                    console.log("Error");
-                    console.dir(error);
-            });
-        }
-    });
+                console.log("here goes nothing...");
+                $('#pic').attr('src', "/assets/loader.gif");
+
+                var parseFile = new Parse.File(name, file);
+                parseFile.save().then(
+                    function() {
+                        console.log(parseFile.url());
+                        $('#url').val(parseFile.url());
+                        $('#pic').attr('src', parseFile.url());
+                    },
+                    function(error) {
+                        console.log("Error");
+                        console.dir(error);
+                });
+            }
+        });
 
   $( ".project-tag" ).on("click", function(event) {
     if (projectTags.indexOf(event.target.id) !== -1) {
@@ -47,7 +48,6 @@ $(document).ready(function() {
       $('#project-tags-input').val(projectTags);
       console.log(projectTags);
     }
-
   });
-
 });
+}

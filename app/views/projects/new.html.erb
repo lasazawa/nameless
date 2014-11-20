@@ -19,6 +19,13 @@
           <%= p.text_area(:description, class: "form-control", rows: 4 )%>
         </div>
       </div>
+      <!-- emails -->
+      <div class = "form-group">
+        <%= p.label(:emails, "emails", class: "control-label")%>
+        <div>
+          <%= p.text_area(:emails, class: "form-control", rows: 4 )%>
+        </div>
+      </div>
       <!-- tags section -->
       <div>
         <h4>Select tags that relate to your project</h4>
@@ -44,3 +51,7 @@
   </div>
   <div class="col-md-2"></div>
 </div>
+
+<script>
+  engine();
+</script>
