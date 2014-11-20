@@ -22,11 +22,12 @@
       <!-- tags section -->
       <div>
         <h4>Select tags that relate to your project</h4>
-        <% @tags.each do |tag| %>
-          <span class="project-tag btn btn-info">
-            <%= tag.name %>
+        <% @tags.each do |t| %>
+          <span class="project-tag btn btn-info" id="<%= t.id %>">
+            <%= t.name %>
           </span>
         <% end %>
+        <input type="hidden" name="tags" id="project-tags-input" value="">
       </div>
       <br>
       <!-- photo upload -->

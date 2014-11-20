@@ -1,5 +1,7 @@
 /// photo uploading
 
+var tags = tagged;
+
 $(document).ready(function() {
 
     var parseAPPID = "WaIQr0ALAedB6JhACwDdqAJXN5m0kBizefvqIRMd";
@@ -33,8 +35,12 @@ $(document).ready(function() {
         }
     });
 
-  $( ".project-tag" ).click(function() {
-    $( this ).toggleClass( "active" );
+  $( ".project-tag" ).on("click", function(event) {
+    if (tags.indexOf(event.target.id) !== -1) {
+      tags.splice(event.target.id, 1);
+      $( this ).toggleClass( "active" );
+      console.log(tags);
+    }
   });
 
 });
