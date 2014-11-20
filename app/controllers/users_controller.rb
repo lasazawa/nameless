@@ -30,15 +30,22 @@ end
 
  def update
     @user = User.find(params[:id])
-    @user.update_columns(user_params)
+    @user.update_columns(user_params_update)
     redirect_to user_path(@user.id)
+    tags = params[:tags]
+    tags_array = tags.split(",")
+    tags_array.each do |t|
+      @user.tags << t
+    end
  end
-
 
 #########
 
   private
-  def user_params
+   def user_params
+    params.require(:user).permit(:username, :password, :password_confirmation)
+  end
+  def user_params_update
     params.require(:user).permit(:firstname, :lastname, :age, :city)
   end
 
