@@ -20,6 +20,7 @@ class UsersController < ApplicationController
  end
 
 def show
+  @projects = Project.all
   @user = User.find(params[:id])
 end
 
