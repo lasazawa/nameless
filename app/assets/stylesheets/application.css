@@ -13,3 +13,41 @@
  *= require_tree .
  *= require_self
  */
+* {
+  margin: 0;
+}
+
+body {
+  height: 100%;
+}
+
+#footer {
+  margin-top: 40px;
+  padding:20px 0;
+  height: 100px;
+  background-color: rgba(0,0,0,0.04);
+  border-top:solid 1px rgba(0,0,0,0.05);
+}
+
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: 0px;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+  height: 100px;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float:left;
+}
+
+#add-project-btn {
+  margin: 8px 0 0 15px;
+}

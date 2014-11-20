@@ -1,5 +1,15 @@
 <h1><%= @project.name %> Project</h1>
 <%= @project.description %><br>
 <%= image_tag(@project.photo_url, class: "project-image")  %>
+<br>
 
+<h5></h5>
+<% @tags.each do |tag| %>
+  <span class="label label-info">
+    <%= tag.name %>
+  </span>
+<% end %>
+<br>
 <%= link_to("Edit", edit_user_project_path(@current_user, @project)) %>
+
+

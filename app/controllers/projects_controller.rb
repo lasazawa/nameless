@@ -6,6 +6,7 @@ before_action :current_user
 
 def new
   @project = Project.new
+  @tags = Tag.all
 end
 
 def create
@@ -13,11 +14,17 @@ def create
   if @project.save
     flash[:success] = "Your new project has been saved!"
     redirect_to user_project_path(@current_user.id, @project.id)
+  else
+    flash.now[:alert] = "Please finish filling out the project form"
+    @data = project_params
+    @tags = Tag.all
+    render :new
   end
 end
 
 def show
   @project = Project.find(params[:id])
+  @tags = Tag.all
 end
 
 def edit
