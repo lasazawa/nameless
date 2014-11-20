@@ -51,3 +51,11 @@ body {
 #add-project-btn {
   margin: 8px 0 0 15px;
 }
+
+.btn-sm {
+  margin-top:5px;
+}
+/*
+.btn-info.active {
+  background-color:
+}*/

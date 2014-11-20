@@ -11,6 +11,13 @@ end
 
 def create
   @project = Project.create(project_params.merge(user_id: params[:user_id]))
+  tags = params[:tags]
+  tagsArray = tags.split(",")
+  intTagsArray = tagsArray.each do |t|
+    tag = Tag.find(t)
+    @project.tags << tag
+  end
+
   if @project.save
     flash[:success] = "Your new project has been saved!"
     redirect_to user_project_path(@current_user.id, @project.id)
@@ -44,7 +51,7 @@ end
 
 private
   def project_params
-    params.require(:project).permit(:name, :description, :photo_url, :tags)
+    params.require(:project).permit(:name, :description, :photo_url)
   end
 
 end
