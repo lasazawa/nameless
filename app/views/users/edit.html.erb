@@ -59,7 +59,9 @@
 	$(document).ready(function(){
 		$(".tag").on("click", function(event) {
 			if (tags.indexOf(parseInt(event.target.id)) !== -1) {
-				tags.splice(event.target.id);
+				var tagI = tags.indexOf(parseInt(event.target.id))
+				console.log(tagI)
+				tags.splice( tagI, 1 );
 				$(this).toggleClass("active");
 				$("#tagsinput").val(tags)
 				console.log(tags)
@@ -68,6 +70,7 @@
 				tags.push(parseInt(event.target.id))
 				$(this).toggleClass("active");
 				$("#tagsinput").val(tags)
+				console.log(tags)
 			}
 		})
 	})
