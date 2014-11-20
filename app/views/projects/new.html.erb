@@ -23,7 +23,7 @@
       <div>
         <h4>Select tags that relate to your project</h4>
         <% @tags.each do |t| %>
-          <span class="project-tag btn btn-info" id="<%= t.id %>">
+          <span class="project-tag btn btn-info btn-sm" id="<%= t.id %>">
             <%= t.name %>
           </span>
         <% end %>

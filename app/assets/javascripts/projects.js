@@ -1,6 +1,6 @@
 /// photo uploading
 
-var tags = tagged;
+var projectTags = [];
 
 $(document).ready(function() {
 
@@ -36,11 +36,18 @@ $(document).ready(function() {
     });
 
   $( ".project-tag" ).on("click", function(event) {
-    if (tags.indexOf(event.target.id) !== -1) {
-      tags.splice(event.target.id, 1);
-      $( this ).toggleClass( "active" );
-      console.log(tags);
+    if (projectTags.indexOf(event.target.id) !== -1) {
+      projectTags.splice(this.index, 1);
+      $(this).toggleClass( "active" );
+      console.log(projectTags);
     }
+    else {
+      projectTags.push(event.target.id);
+      $(this).toggleClass( "active" );
+      $('#project-tags-input').val(projectTags);
+      console.log(projectTags);
+    }
+
   });
 
 });
