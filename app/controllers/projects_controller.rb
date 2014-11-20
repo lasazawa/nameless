@@ -31,14 +31,22 @@ end
 
 def show
   @project = Project.find(params[:id])
-  @tags = Tag.all
+  @tags = @project.tags
 end
 
 def edit
   @project = Project.find(params[:id])
+  @tags = Tag.all
+  @tagged = []
+  @project.tags.each do |x|
+    @tagged << x.id
+  end
+  # pass all tags
+  # and tags selected
 end
 
 def update
+  # udpate newly selected tags
   @project = Project.find(params[:id])
   @project.update_attributes(project_params)
   if @project.save

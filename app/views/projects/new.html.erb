@@ -44,3 +44,22 @@
   </div>
   <div class="col-md-2"></div>
 </div>
+
+<script>
+  var projectTags = [];
+    $( ".project-tag" ).on("click", function(event) {
+    if (projectTags.indexOf(event.target.id) !== -1) {
+      var tagI = projectTags.indexOf(event.target.id);
+      projectTags.splice(tagI, 1);
+      $(this).toggleClass( "active" );
+      console.log(projectTags);
+    }
+    else {
+      projectTags.push(event.target.id);
+      $(this).toggleClass( "active" );
+      $('#project-tags-input').val(projectTags);
+      console.log(projectTags);
+    }
+
+  });
+</script>

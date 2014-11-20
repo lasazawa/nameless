@@ -17,8 +17,46 @@
   <button class="btn btn-default" id="fileUploadBtn">Submit</button>
   <img id="pic" src="<%= @project.photo_url %>" height="300" width="300">
 
+  <!-- tags section -->
+  <div>
+    <h4>Select tags that relate to your project</h4>
+    <% @tags.each do |t| %>
+      <% if @tagged.include? t.id %>
+        <span class="project-tag btn btn-info btn-sm active" id="<%= t.id %>">
+          <%= t.name %>
+        </span>
+        <% else %>
+        <span class="project-tag btn btn-info btn-sm" id="<%= t.id %>">
+          <%= t.name %>
+        </span>
+      <% end %>
+    <% end %>
+    <input type="hidden" name="tags" id="project-tags-input" value="">
+  </div>
+  <br>
 
   <%= p.submit("Save Changes", class: "btn btn-lg btn-info") %>
 
   <% end %>
 
+<script type="text/javascript">
+  var tags = <%= @tagged %>
+  $(document).ready(function(){
+    $(".tag").on("click", function(event) {
+      if (tags.indexOf(parseInt(event.target.id)) !== -1) {
+        var tagI = tags.indexOf(parseInt(event.target.id))
+        console.log(tagI)
+        tags.splice( tagI, 1 );
+        $(this).toggleClass("active");
+        $("#tagsinput").val(tags)
+        console.log(tags)
+      }
+      else {
+        tags.push(parseInt(event.target.id))
+        $(this).toggleClass("active");
+        $("#tagsinput").val(tags)
+        console.log(tags)
+      }
+    })
+  })
+</script>
