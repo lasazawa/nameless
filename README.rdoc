@@ -1,7 +1,7 @@
 Nameless
 Have you ever had to name a new application?  IT IS SOOO HARD TO DO IT WELL.  AHAHAHA
 
-Nameless is an application that helps you name your projects.  Create an account, describe your project, and have your community and like-minded people help you sort out the bet name.
+Nameless is an application that helps you name your projects.  Create an account, describe your project, and have your community and like-minded people help you sort out the best name.
 
 By default Nameless will invite the people in your community that you choose to 'vote' on any name ideas you have & suggest other names for your idea.
 
