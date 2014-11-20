@@ -19,6 +19,13 @@
           <%= p.text_area(:description, class: "form-control", rows: 4 )%>
         </div>
       </div>
+      <!-- emails -->
+      <div class = "form-group">
+        <%= p.label(:emails, "emails", class: "control-label")%>
+        <div>
+          <%= p.text_area(:emails, class: "form-control", rows: 4 )%>
+        </div>
+      </div>
       <!-- tags section -->
       <div>
         <h4>Select tags that relate to your project</h4>
@@ -34,6 +41,7 @@
       <h4>Upload photos</h4>
       <img id="pic" src="" height="120" width="120">
       <span class="btn btn-default btn-file">Browse <input type="file" id="fileUploader"></span>
+      <%= p.hidden_field(:photo_url, id: "url") %>
       <br>
       <hr>
       <%= p.submit("Add Project", class: "btn btn-lg btn-primary right") %>
@@ -46,20 +54,25 @@
 </div>
 
 <script>
-  var projectTags = [];
-    $( ".project-tag" ).on("click", function(event) {
-    if (projectTags.indexOf(event.target.id) !== -1) {
-      var tagI = projectTags.indexOf(event.target.id);
-      projectTags.splice(tagI, 1);
-      $(this).toggleClass( "active" );
-      console.log(projectTags);
-    }
-    else {
-      projectTags.push(event.target.id);
-      $(this).toggleClass( "active" );
-      $('#project-tags-input').val(projectTags);
-      console.log(projectTags);
-    }
+  $(document).ready(function(){
+    var projectTags = [];
+      $( ".project-tag" ).on("click", function(event) {
+      if (projectTags.indexOf(event.target.id) !== -1) {
+        var tagI = projectTags.indexOf(event.target.id);
+        projectTags.splice(tagI, 1);
+        $(this).toggleClass( "active" );
+        console.log(projectTags);
+      }
+      else {
+        projectTags.push(event.target.id);
+        $(this).toggleClass( "active" );
+        $('#project-tags-input').val(projectTags);
+        console.log(projectTags);
+      }
 
+    });
   });
+  engine();
 </script>
+
+

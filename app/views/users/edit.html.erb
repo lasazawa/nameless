@@ -46,6 +46,15 @@
 			<input type="hidden" name="tags" id="tagsinput" value="">
 		</div>
 
+      <!-- photo upload -->
+      <h4>Upload photos</h4>
+      <img id="pic" src="<%= @user.picurl %>" height="120" width="120">
+      <span class="btn btn-default btn-file">Browse <input type="file" id="fileUploader"></span>
+      <%= f.hidden_field(:picurl, id: "url") %>
+      <br>
+      <hr>
+
+
 			<%= f.submit("Add details", class: "btn btn-primary") %>
 		</div>
 
@@ -75,4 +84,8 @@
 		})
 	})
 
+</script>
+
+<script>
+  engine();
 </script>

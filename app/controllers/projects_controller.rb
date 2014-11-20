@@ -10,6 +10,8 @@ def new
 end
 
 def create
+
+  #store to database
   @project = Project.create(project_params.merge(user_id: params[:user_id]))
   tags = params[:tags]
   tagsArray = tags.split(",")
@@ -27,6 +29,29 @@ def create
     @tags = Tag.all
     render :new
   end
+
+  #send invite emails
+  emailstring = @project.emails
+  emailarray = emailstring.split(",")
+
+  client = SendGrid::Client.new do |c|
+    c.api_user = 'namelessapp'
+    c.api_key = 'hellohello3'
+  end
+
+  headers['X-SMTPAPI'] = { :to => emailarray }.to_json
+
+  mail = SendGrid::Mail.new do |m|
+    m.to = 'ignore@ignore.com'
+    m.from = 'namelessapp@wlessin.com'
+    m.subject = 'Hello world! x2'
+    m.text = 'I heard you like pineapple.'
+  end
+
+  puts client.send(mail)
+
+
+
 end
 
 def show
@@ -59,7 +84,7 @@ end
 
 private
   def project_params
-    params.require(:project).permit(:name, :description, :photo_url)
+    params.require(:project).permit(:name, :description, :photo_url, :emails)
   end
 
 end
