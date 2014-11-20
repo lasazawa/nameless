@@ -74,6 +74,15 @@ def update
   # udpate newly selected tags
   @project = Project.find(params[:id])
   @project.update_attributes(project_params)
+  @project.tags = []
+  tags = params[:tags]
+  tagsArray = tags.split(",")
+
+  tagsArray.each do |t|
+    tag = Tag.find(t)
+    @project.tags << tag
+  end
+
   if @project.save
     flash[:success] = "Your project has been saved"
     redirect_to user_project_path(@current_user.id, @project.id)

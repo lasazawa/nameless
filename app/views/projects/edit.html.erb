@@ -42,21 +42,22 @@
 <script type="text/javascript">
   var tags = <%= @tagged %>
   $(document).ready(function(){
-    $(".tag").on("click", function(event) {
+    $(".project-tag").on("click", function(event) {
       if (tags.indexOf(parseInt(event.target.id)) !== -1) {
         var tagI = tags.indexOf(parseInt(event.target.id))
         console.log(tagI)
         tags.splice( tagI, 1 );
         $(this).toggleClass("active");
-        $("#tagsinput").val(tags)
+        $("#project-tags-input").val(tags)
         console.log(tags)
       }
       else {
         tags.push(parseInt(event.target.id))
         $(this).toggleClass("active");
-        $("#tagsinput").val(tags)
+        $("#project-tags-input").val(tags)
         console.log(tags)
       }
     })
   })
+  engine();
 </script>
