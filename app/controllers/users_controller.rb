@@ -26,16 +26,22 @@ end
 def edit
   @tags = Tag.all
   @user = User.find(params[:id])
+  @tagged = []
+  @user.tags.each do |t|
+    @tagged << t.id
+  end
 end
 
  def update
     @user = User.find(params[:id])
     @user.update_columns(user_params_update)
     redirect_to user_path(@user.id)
+    @user.tags = []
     tags = params[:tags]
     tags_array = tags.split(",")
     tags_array.each do |t|
-      @user.tags << t
+      tag = Tag.find(t)
+      @user.tags << tag
     end
  end
 
