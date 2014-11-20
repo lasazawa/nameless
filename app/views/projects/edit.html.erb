@@ -9,6 +9,16 @@
     <%= p.label(:description, "Description", class: "control-label")%>
     <%= p.text_field(:description, autofocus: true, class: "form-control" )%>
   </div>
+
+
+  <%= p.hidden_field(:photo_url, id: "url" ) %>
+
+  <span class="btn btn-default btn-file">Browse <input type="file" id="fileUploader"></span>
+  <button class="btn btn-default" id="fileUploadBtn">Submit</button>
+  <img id="pic" src="<%= @project.photo_url %>" height="300" width="300">
+
+
   <%= p.submit("Save Changes", class: "btn btn-lg btn-info") %>
 
   <% end %>
+

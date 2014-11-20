@@ -30,6 +30,8 @@ gem 'pry-rails'
 gem 'rspec'
 gem 'bcrypt'
 
+gem 'sendgrid-ruby'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,63 +1,48 @@
-<h1>Create a Project</h1>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
 
-<%= form_for(@project, url: user_projects_path, class: "form-horizontal") do |p| %>
-  <div class = "form-group">
-    <%= p.label(:name, "Name", class: "control-label")%>
-    <%= p.text_field(:name, autofocus: true, class: "form-control" , placeholder: "bike shop, tech company, produce store")%>
+    <h1>Create a Project</h1>
+
+    <%= form_for(@project, url: user_projects_path(@current_user), class: "form-horizontal") do |p| %>
+    <!-- project name -->
+      <div class = "form-group">
+        <%= p.label(:name, "Name", class: "control-label")%>
+        <div>
+          <%= p.text_field(:name, autofocus: true, class: "form-control" , placeholder: "Bike Shop, Tech Company, Produce Store")%>
+        </div>
+      </div>
+      <!-- description -->
+      <div class = "form-group">
+        <%= p.label(:description, "Description", class: "control-label")%>
+        <div>
+          <%= p.text_area(:description, class: "form-control", rows: 4 )%>
+        </div>
+      </div>
+      <!-- tags section -->
+      <div>
+        <h4>Select tags that relate to your project</h4>
+        <% @tags.each do |tag| %>
+          <span class="project-tag btn btn-info">
+            <%= tag.name %>
+          </span>
+        <% end %>
+      </div>
+      <br>
+      <!-- photo upload -->
+      <h4>Upload photos</h4>
+      <img id="pic" src="" height="120" width="120">
+      <span class="btn btn-default btn-file">Browse <input type="file" id="fileUploader"></span>
+      <button class="btn btn-default" id="fileUploadBtn">Submit</button>
+      <%= p.hidden_field(:photo_url, id: "url" ) %>
+      <!-- submit -->
+      <br>
+      <hr>
+      <%= p.submit("Add Project", class: "btn btn-lg btn-primary right") %>
+
+    <% end %>
+      <%= link_to("Cancel", user_path(@current_user.id), class: "left") %>
+
   </div>
-  <div class = "form-group">
-    <%= p.label(:description, "Description", class: "control-label")%>
-    <%= p.text_field(:description, autofocus: true, class: "form-control" )%>
-  </div>
-
-  <%= p.hidden_field(:photo_url, id: "url" ) %>
-
-
-  <span class="btn btn-default btn-file">Browse <input type="file" id="fileUploader"></span>
-  <button class="btn btn-default" id="fileUploadBtn">Submit</button>
-  <img id="pic" src="" height="300" width="300">
-
-
-
-
-  <%= p.submit("Add Project", class: "btn btn-lg btn-info") %>
-
-<% end %>
-
-
-<script>  /// photo uploading
-
-$(document).ready(function() {
-
-    var parseAPPID = "WaIQr0ALAedB6JhACwDdqAJXN5m0kBizefvqIRMd";
-    var parseJSID = "JWFUQveemVMqiwfgLY5GVDrjCF9t3HQpv1wvE0Z1";
-
-    //Initialize Parse
-    Parse.initialize(parseAPPID,parseJSID);
-    $("#fileUploadBtn").on("click", function(e) {
-      event.preventDefault();
-
-        var fileUploadControl = $("#fileUploader")[0];
-        if (fileUploadControl.files.length > 0) {
-            var file = fileUploadControl.files[0];
-            var name = "photo.jpg";
-
-            console.log("here goes nothing...");
-            $('#pic').attr('src', "<%= image_path('loader.gif') %>");
-
-            var parseFile = new Parse.File(name, file);
-            parseFile.save().then(
-                function() {
-                    console.log("Woot!");
-                    console.log(parseFile.url());
-                    $('#url').val(parseFile.url());
-                    $('#pic').attr('src', parseFile.url());
-                },
-                function(error) {
-                    console.log("Error");
-                    console.dir(error);
-            });
-        }
-    });
-});
-</script>
+  <div class="col-md-2"></div>
+</div>
