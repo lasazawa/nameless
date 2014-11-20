@@ -45,7 +45,7 @@
       <h4 class="navbar-text navbar-left"><a href="/">Nameless</a></h4>
       <%= link_to("Add Project", new_user_project_path(@current_user.id), class: "btn btn-primary navbar-right", id: "add-project-btn") %>
       <p class="navbar-text navbar-right"><a href = "/logout">logout</a></p>
-      <p class="navbar-text navbar-right"><%=@current_user.username%> </p>
+      <p class="navbar-text navbar-right"><%= link_to(@current_user.username, edit_user_path(@current_user.id))%></a></p>
     <% end %>
 
 
@@ -84,9 +84,6 @@
   </div>
 </div>
 
-<script>
-  engine();
-</script>
 
 </body>
 </html>
