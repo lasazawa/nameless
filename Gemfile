@@ -29,7 +29,6 @@ gem 'spring',        group: :development
 gem 'pry-rails'
 gem 'rspec'
 gem 'bcrypt'
-
 gem 'sendgrid-ruby'
 
 # Use ActiveModel has_secure_password
