@@ -13,7 +13,8 @@
             <div class="col-md-8">
               <p><h3 class="marginless"><%= project.name %></h3><br>
               submitted by, <%= project.user.username %><br>
-              <%= project.description %></p>
+              <%= project.description %><br>
+              <%= link_to("view", user_project_path(@current_user.id, project.id))%></p>
             </div>
           </div>
   <% end  %>

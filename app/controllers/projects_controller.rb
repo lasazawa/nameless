@@ -33,26 +33,19 @@ def create
   #send invite emails
   emailstring = @project.emails
   emailarray = emailstring.split(",")
+  emailarray.each do | email |
 
-  client = SendGrid::Client.new do |c|
-    c.api_user = 'namelessapp'
-    c.api_key = 'hellohello3'
+    client = SendGrid::Client.new(api_user: 'namelessapp', api_key: 'hellohello3')
+    mail = SendGrid::Mail.new do |m|
+      m.to = email
+      m.from = @project.user.username + '@namelessapp.com'
+      m.subject = 'Help me name my new project'
+      m.text = 'I have a new project and would love your help naming it.  the idea is' + @project.description
+    end
+    puts client.send(mail)
   end
-
-  headers['X-SMTPAPI'] = { :to => emailarray }.to_json
-
-  mail = SendGrid::Mail.new do |m|
-    m.to = 'ignore@ignore.com'
-    m.from = 'namelessapp@wlessin.com'
-    m.subject = 'Hello world! x2'
-    m.text = 'I heard you like pineapple.'
-  end
-
-  puts client.send(mail)
-
-
-
 end
+
 
 def show
   @project = Project.find(params[:id])
