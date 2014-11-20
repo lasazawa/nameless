@@ -1,6 +1,7 @@
 <h1><%= @project.name %> Project</h1>
 <%= @project.description %><br>
-<%= image_tag(@project.photo_url, class: "project-image")  %>
+
+<img src="<%= @project.photo_url%>" class="project-image">
 <br>
 
 <h5></h5>
