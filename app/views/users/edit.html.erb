@@ -38,9 +38,9 @@
 		<div class="form-group">
 			<% @tags.each do |t| %>
 				<% if @tagged.include? t.id %>
-					<button type="button"class="tag btn btn-default btn-sm active" id="<%= t.id %>" style="margin-top:5px"><%= t.name %></button>
+					<button type="button"class="tag btn btn-info btn-sm active" id="<%= t.id %>" style="margin-top:5px"><%= t.name %></button>
 				<% else %>
-					<button type="button"class="tag btn btn-default btn-sm" id="<%= t.id %>" style="margin-top:5px"><%= t.name %></button>
+					<button type="button"class="tag btn btn-info btn-sm" id="<%= t.id %>" style="margin-top:5px"><%= t.name %></button>
 				<% end %>
 			<% end %>
 			<input type="hidden" name="tags" id="tagsinput" value="">
@@ -59,18 +59,15 @@
 	$(document).ready(function(){
 		$(".tag").on("click", function(event) {
 			if (tags.indexOf(parseInt(event.target.id)) !== -1) {
-				tags.splice( $.inArray(event.target.id, tags), 1 );
+				tags.splice(event.target.id);
 				$(this).toggleClass("active");
 				$("#tagsinput").val(tags)
-				console.log(tags);
-				// console.log($("#tagsinput").val());
+				console.log(tags)
 			}
 			else {
 				tags.push(parseInt(event.target.id))
 				$(this).toggleClass("active");
 				$("#tagsinput").val(tags)
-				console.log(tags);
-				// console.log($("#tagsinput").val());
 			}
 		})
 	})
