@@ -11,9 +11,9 @@
 			<% end %>
 		</ul>
 		<% end %>
+		<div></div>
 
-
-		<%= form_for(@user, url: edit_user_path(@user.id), method: "put") do |f|%>
+		<%= form_for(@user, url: user_path(@user.id), method: "put") do |f|%>
 		<br>
 		<div class="form-group">
 			<%= f.label(:firstname, class: "control-label") %>
