@@ -59,3 +59,12 @@ body {
 .btn-info.active {
   background-color:
 }*/
+
+.label-info {
+  padding: 7px 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: normal;
+  margin: 5px 5px 0 0;
+  border: solid 1px #46b8da;
+}

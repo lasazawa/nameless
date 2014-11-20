@@ -3,7 +3,7 @@
 <%= image_tag(@project.photo_url, class: "project-image")  %>
 <br>
 
-<h5></h5>
+<h5>Tags related to this project</h5>
 <% @tags.each do |tag| %>
   <span class="label label-info">
     <%= tag.name %>

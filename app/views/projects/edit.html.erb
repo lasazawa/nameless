@@ -1,43 +1,50 @@
-<h1>Edit <%= @project.name %></h1>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h1>Edit <%= @project.name %></h1>
 
-<%= form_for(@project, url: user_project_path, method: "PUT", class: "form-horizontal") do |p| %>
-  <div class = "form-group">
-    <%= p.label(:name, "Name", class: "control-label")%>
-    <%= p.text_field(:name, autofocus: true, class: "form-control" , placeholder: "bike shop, tech company, produce store")%>
-  </div>
-    <div class = "form-group">
-    <%= p.label(:description, "Description", class: "control-label")%>
-    <%= p.text_field(:description, autofocus: true, class: "form-control" )%>
-  </div>
+    <%= form_for(@project, url: user_project_path, method: "PUT", class: "form-horizontal") do |p| %>
+      <div class = "form-group">
+        <%= p.label(:name, "Name", class: "control-label")%>
+        <%= p.text_field(:name, autofocus: true, class: "form-control" , placeholder: "bike shop, tech company, produce store")%>
+      </div>
+        <div class = "form-group">
+        <%= p.label(:description, "Description", class: "control-label")%>
+        <%= p.text_field(:description, autofocus: true, class: "form-control" )%>
+      </div>
 
 
-  <%= p.hidden_field(:photo_url, id: "url" ) %>
+      <%= p.hidden_field(:photo_url, id: "url" ) %>
 
-  <span class="btn btn-default btn-file">Browse <input type="file" id="fileUploader"></span>
-  <button class="btn btn-default" id="fileUploadBtn">Submit</button>
-  <img id="pic" src="<%= @project.photo_url %>" height="300" width="300">
+      <span class="btn btn-default btn-file">Browse <input type="file" id="fileUploader"></span>
+      <button class="btn btn-default" id="fileUploadBtn">Submit</button>
+      <img id="pic" src="<%= @project.photo_url %>" height="300" width="300">
 
-  <!-- tags section -->
-  <div>
-    <h4>Select tags that relate to your project</h4>
-    <% @tags.each do |t| %>
-      <% if @tagged.include? t.id %>
-        <span class="project-tag btn btn-info btn-sm active" id="<%= t.id %>">
-          <%= t.name %>
-        </span>
-        <% else %>
-        <span class="project-tag btn btn-info btn-sm" id="<%= t.id %>">
-          <%= t.name %>
-        </span>
+      <!-- tags section -->
+      <div>
+        <h4>Select tags that relate to your project</h4>
+        <% @tags.each do |t| %>
+          <% if @tagged.include? t.id %>
+            <span class="project-tag btn btn-info btn-sm active" id="<%= t.id %>">
+              <%= t.name %>
+            </span>
+            <% else %>
+            <span class="project-tag btn btn-info btn-sm" id="<%= t.id %>">
+              <%= t.name %>
+            </span>
+          <% end %>
+        <% end %>
+        <input type="hidden" name="tags" id="project-tags-input" value="">
+      </div>
+      <br>
+      <hr>
+      <%= p.submit("Save Changes", class: "btn btn-lg btn-primary right") %>
       <% end %>
-    <% end %>
-    <input type="hidden" name="tags" id="project-tags-input" value="">
   </div>
-  <br>
+  <div class="col-md-2"></div>
+</div>
 
-  <%= p.submit("Save Changes", class: "btn btn-lg btn-info") %>
 
-  <% end %>
 
 <script type="text/javascript">
   var tags = <%= @tagged %>
