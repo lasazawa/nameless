@@ -55,10 +55,11 @@ def show
 end
 
 def vote
-  binding.pry
-  votedname = Name.find(nameid)
-  voteuser = User.fine(voterid)
-  votedname.liked_by voteduser
+  nid = params[:nameid]
+  uid = params[:voterid]
+  name = Name.find(nid)
+  user = User.fine(uid)
+  name.liked_by user
 end
 
 def edit
