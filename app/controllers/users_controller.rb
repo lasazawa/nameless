@@ -49,8 +49,6 @@ end
       tag = Tag.find(t)
       @user.tags << tag
 
-    binding.pry
-
     email = user_params_update[:email]
     firstname = user_params_update[:firstname]
 
