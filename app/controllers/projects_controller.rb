@@ -51,6 +51,14 @@ def show
   @project = Project.find(params[:id])
   @tags = @project.tags
   @user = User.find(params[:id])
+  @names = @project.names
+end
+
+def vote
+  binding.pry
+  votedname = Name.find(nameid)
+  voteuser = User.fine(voterid)
+  votedname.liked_by voteduser
 end
 
 def edit
