@@ -50,6 +50,7 @@ end
 def show
   @project = Project.find(params[:id])
   @tags = @project.tags
+  @user = User.find(params[:id])
 end
 
 def edit
