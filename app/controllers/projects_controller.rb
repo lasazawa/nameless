@@ -63,7 +63,6 @@ def vote
   name.liked_by user
   names = project.names
   votes = []
-  binding.pry
   names.each do |v|
     vote = {:name => v.name, :totalvotes => v.votes_for.size}
     votes << vote

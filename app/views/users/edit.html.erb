@@ -43,6 +43,8 @@
 					<button type="button"class="tag btn btn-info btn-sm" id="<%= t.id %>" style="margin-top:5px"><%= t.name %></button>
 				<% end %>
 			<% end %>
+			<div id="newtagsdiv" ></div>
+			<input id="newtag" type="text"><button type="button" id="submittag" class="btn btn-sm btn-success">Submit new Tag</button>
 			<input type="hidden" name="tags" id="tagsinput" value="">
 		</div>
 
@@ -63,27 +65,57 @@
 
 </div>
 </div>
+<script id="tag-template" type="text/x-handlebars-template">
+	{{name}}
+</script>
 <script type="text/javascript">
-	var tags = <%= @tagged %>
-	$(document).ready(function(){
-		$(".tag").on("click", function(event) {
-			if (tags.indexOf(parseInt(event.target.id)) !== -1) {
-				var tagI = tags.indexOf(parseInt(event.target.id))
-				console.log(tagI)
-				tags.splice( tagI, 1 );
-				$(this).toggleClass("active");
-				$("#tagsinput").val(tags)
-				console.log(tags)
-			}
-			else {
-				tags.push(parseInt(event.target.id))
-				$(this).toggleClass("active");
-				$("#tagsinput").val(tags)
-				console.log(tags)
-			}
-		})
+var tags = <%= @tagged %>
+$(document).ready(function(){
+	$(".tag").on("click", function(event) {
+		if (tags.indexOf(parseInt(event.target.id)) !== -1) {
+			var tagI = tags.indexOf(parseInt(event.target.id))
+			console.log(tagI)
+			tags.splice( tagI, 1 );
+			$(this).toggleClass("active");
+			$("#tagsinput").val(tags)
+			console.log(tags)
+		}
+		else {
+			tags.push(parseInt(event.target.id))
+			$(this).toggleClass("active");
+			$("#tagsinput").val(tags)
+			console.log(tags)
+		}
 	})
+})
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#submittag").on("click", function(event) {
+		if ($("#newtag").val() !== "") {
+			$.ajax({
+				type: "POST",
+				url: "/users/<%= @current_user.id %>/tag",
+				data: {tagname: $("#newtag").val(), user: <%= @current_user.id %>},
+				success: function(data, textStatus, jqXHR) { 
+					var tagdata = data
+					console.log(tagdata)
+					var source = $("#tag-template").html();
 
+					var template = Handlebars.compile(source);
+
+					var html = template({tagData: data});
+
+					$("#newtagsdiv").html(tagdata.name);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					alert("Error=" + errorThrown);
+				},
+				dataType: "json"
+			});
+		}
+	})
+})
 </script>
 
 <script>
