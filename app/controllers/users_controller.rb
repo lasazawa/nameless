@@ -48,6 +48,19 @@ end
     tags_array.each do |t|
       tag = Tag.find(t)
       @user.tags << tag
+
+    email = user_params_update[:email]
+    firstname = user_params_update[:firstname]
+
+    client = SendGrid::Client.new(api_user: 'namelessapp', api_key: 'hellohello3')
+    mail = SendGrid::Mail.new do |m|
+      m.to = email
+      m.from = 'admin@namelessapp.com'
+      m.subject = 'welcome to nameless ' + firstname
+      m.text = 'welcome to nameless'
+    end
+    puts client.send(mail)
+
     end
  end
 
@@ -58,7 +71,7 @@ end
     params.require(:user).permit(:username, :password, :password_confirmation)
   end
   def user_params_update
-    params.require(:user).permit(:firstname, :lastname, :age, :city, :picurl)
+    params.require(:user).permit(:firstname, :lastname, :age, :city, :picurl, :email)
   end
 
 end

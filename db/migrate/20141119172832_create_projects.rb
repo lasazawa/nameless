@@ -8,7 +8,6 @@ class CreateProjects < ActiveRecord::Migration
       t.string :emails
       t.string :nonce
       t.string :ptoken
-
       t.timestamps
     end
   end
