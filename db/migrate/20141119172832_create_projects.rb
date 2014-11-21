@@ -6,6 +6,8 @@ class CreateProjects < ActiveRecord::Migration
       t.text :description
       t.string :photo_url
       t.string :emails
+      t.string :nonce
+      t.string :ptoken
 
       t.timestamps
     end

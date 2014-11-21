@@ -2,9 +2,10 @@ class ProjectsController < ApplicationController
 
 before_action :confirm_logged_in, except: [:show]
 before_action :current_user
-
+before_action :confirgurebraintree, only: [:new, :create]
 
 def new
+  @client_token = Braintree::ClientToken.generate
   @project = Project.new
   @tags = Tag.all
 end
@@ -18,16 +19,6 @@ def create
   intTagsArray = tagsArray.each do |t|
     tag = Tag.find(t)
     @project.tags << tag
-  end
-
-  if @project.save
-    flash[:success] = "Your new project has been saved!"
-    redirect_to user_project_path(@current_user.id, @project.id)
-  else
-    flash.now[:alert] = "Please finish filling out the project form"
-    @data = project_params
-    @tags = Tag.all
-    render :new
   end
 
   #send invite emails
@@ -44,13 +35,38 @@ def create
     end
     puts client.send(mail)
   end
+
+  #charge the card
+  nonce = project_params[:nonce]
+  userid = params[:user_id]
+
+    result = Braintree::Transaction.sale(
+      :amount => "4.44",
+      :payment_method_nonce => nonce,
+      :customer => {
+        :id => userid
+      },
+      :options => {
+        :store_in_vault => true
+      });
+
+  #moveon.org
+  if @project.save
+    flash[:success] = "Your new project has been saved!"
+    redirect_to user_project_path(@current_user.id, @project.id)
+  else
+    flash.now[:alert] = "Please finish filling out the project form"
+    @data = project_params
+    @tags = Tag.all
+    render :new
+  end
 end
 
 
 def show
   @project = Project.find(params[:id])
   @tags = @project.tags
-  @user = User.find(params[:id])
+  @user = User.find(params[:user_id])
   @names = @project.names
 end
 
@@ -106,7 +122,7 @@ end
 
 private
   def project_params
-    params.require(:project).permit(:name, :description, :photo_url, :emails)
+    params.require(:project).permit(:name, :description, :photo_url, :emails, :nonce)
   end
 
 end

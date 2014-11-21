@@ -17,4 +17,7 @@ end
 #tags
 resources :tag, only: [:show, :create]
 
+post 'pay', to: 'projects#pay'
+
+
 end
