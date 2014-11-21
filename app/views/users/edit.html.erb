@@ -30,10 +30,15 @@
 
 		</div>
 		<div class="form-group">
-
 			<%= f.label(:city, class: "control-label") %>
 			<%= f.text_field(:city, class: "form-control") %>
 		</div>
+
+		<div class="form-group">
+			<%= f.label(:email, class: "control-label") %>
+			<%= f.text_field(:email, class: "form-control") %>
+		</div>
+
 		<div class="form-group">
 		<div class="form-group">
 			<% @tags.each do |t| %>
@@ -97,7 +102,7 @@ $(document).ready(function(){
 				type: "POST",
 				url: "/users/<%= @current_user.id %>/tag",
 				data: {tagname: $("#newtag").val(), user: <%= @current_user.id %>},
-				success: function(data, textStatus, jqXHR) { 
+				success: function(data, textStatus, jqXHR) {
 					var tagdata = data
 					console.log(tagdata)
 					var source = $("#tag-template").html();

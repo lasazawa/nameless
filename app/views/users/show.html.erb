@@ -31,7 +31,10 @@
               <img src="<%= project.photo_url %>" class="thumbnail">
             </div>
             <div class="col-md-8">
-              project: <%= project.description %><br>
+              <p><h3 class="marginless"><%= project.name %></h3><br>
+              submitted by, <%= project.user.username %><br>
+              <%= project.description %><br>
+              <%= link_to("view", user_project_path(@current_user.id, project.id))%></p>
             </div>
           </div>
   <% end  %>

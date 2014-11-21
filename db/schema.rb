@@ -59,9 +59,7 @@ ActiveRecord::Schema.define(version: 20141120230319) do
     t.integer  "age"
     t.string   "city"
     t.string   "picurl"
-    t.string   "nonce"
-    t.string   "ptoken"
-    t.string   "ccnumber"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
