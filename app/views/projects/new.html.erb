@@ -44,10 +44,31 @@
       <%= p.hidden_field(:photo_url, id: "url") %>
       <br>
       <hr>
+
+      <!-- payment nonce -->
+      <%= p.hidden_field(:nonce, id: "nonce") %>
+
+      <!-- payment -->
+      <h4>Expand your audience</h4>
+      <p>need more help with your naming?  poll relevant people from the nameless community.</p>
+      <span class="btn btn-info btn-sm" id="expand">EXPAND AUDIENCE</span>
+      <br>
+      <hr>
+
       <%= p.submit("Add Project", class: "btn btn-lg btn-primary right") %>
 
     <% end %>
       <%= link_to("Cancel", user_path(@current_user.id), class: "left") %>
+
+      <br>
+
+      <form id="braintree">
+        <input data-braintree-name="number" value="4111111111111111">
+        <input data-braintree-name="expiration_date" value="10/20">
+        <input type="submit" id="submit" value="Pay">
+      </form>
+    <br>
+
 
   </div>
   <div class="col-md-2"></div>
@@ -55,6 +76,41 @@
 
 <script>
   $(document).ready(function(){
+
+     $('#braintree').hide(); //Initially form wil be hidden.
+
+     $('#expand').click(function() {
+       $('#braintree').toggle();//Form shows on button click
+       console.log('ping');
+     });
+
+      braintree.setup( "<%= @client_token %> ", "custom", {id: "braintree"});
+
+      //callback handler for form submit
+      $("#braintree").submit(function(e)
+      {
+          e.preventDefault(); //STOP default action
+          var postData = $(this).serializeArray();
+          var formURL = $(this).attr("action");
+          $.ajax(
+          {
+              url : formURL,
+              type: "POST",
+              data : postData
+          });
+        });
+
+      $("#braintree").submit(); //Submit  the FORM
+
+      $("[name='commit']").hover( function (){
+          var payid = $( "input[name='payment_method_nonce']" ).val();
+          console.log(payid);
+          $('#nonce').val(payid);
+      });
+
+
+
+
     var projectTags = [];
       $( ".project-tag" ).on("click", function(event) {
       if (projectTags.indexOf(event.target.id) !== -1) {
@@ -72,6 +128,7 @@
 
     });
   });
+
   engine();
 </script>
 

@@ -10,6 +10,10 @@ class CreateUsers < ActiveRecord::Migration
     	t.integer :age
     	t.string :city
     	t.string :picurl
+      t.string :nonce
+      t.string :ptoken
+      t.string :ccnumber
+
 
       t.timestamps
     end

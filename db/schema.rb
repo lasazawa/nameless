@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20141120230319) do
     t.text     "description"
     t.string   "photo_url"
     t.string   "emails"
+    t.string   "nonce"
+    t.string   "ptoken"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -57,6 +59,9 @@ ActiveRecord::Schema.define(version: 20141120230319) do
     t.integer  "age"
     t.string   "city"
     t.string   "picurl"
+    t.string   "nonce"
+    t.string   "ptoken"
+    t.string   "ccnumber"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

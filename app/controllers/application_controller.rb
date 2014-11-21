@@ -33,5 +33,13 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id])
   end
 
+  def confirgurebraintree
+    Braintree::Configuration.environment = :sandbox
+    Braintree::Configuration.merchant_id = "sbwmcxdy8prhnt4b"
+    Braintree::Configuration.public_key = "k273kwrny33rrzyk"
+    Braintree::Configuration.private_key = "1feff42d1bc6d56ae0f7bf0969a5fb0b"
+  end
+
+
 end
 

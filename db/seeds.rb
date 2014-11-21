@@ -13,7 +13,9 @@
 
  User.create([{username:'admin', password:'admin1'},
   {username:'user1', password:'user1'},
-  {username:'user2', password:'user2'}
+  {username:'user2', password:'user2'},
+  {username:'user3', password:'user3'},
+  {username:'user4', password:'user4'}
   ])
 
 Project.create([{name:'project1', description: 'a crappy project', user_id: 1},
