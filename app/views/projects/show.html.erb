@@ -40,7 +40,7 @@
 <br>
 <% @names.each do |n| %>
 <button class="btn btn-warning name" id="<%= n.id %>"><%= n.name %></button>
-<div id="voteCount"></div>
+<div id="voteCount"><%= n.votes_for.size %></div>
 <% end %>
 
 
