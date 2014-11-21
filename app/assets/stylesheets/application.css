@@ -145,6 +145,10 @@ h1 span {
   border:solid 1px rgba(0,0,0,0.05);
 }
 
+.btn.active:focus, .btn:active:focus {
+  outline: none;
+}
+
 @media (max-width: 768px) {
 
   h4.navbar-text {
