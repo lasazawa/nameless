@@ -98,6 +98,7 @@ $(document).ready(function(){
           // var html = template({tagData: data});
 
           $("#newnamediv").html(namedata.name);
+          $("#newname").val("")
         },
         error: function(jqXHR, textStatus, errorThrown) {
           alert("Error=" + errorThrown);

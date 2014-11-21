@@ -89,7 +89,6 @@ end
 
 def name
   newname = Name.create(name: params[:name], created_by: params[:user], project_id: params[:id])
-  binding.pry
   render json: newname
 end
 
