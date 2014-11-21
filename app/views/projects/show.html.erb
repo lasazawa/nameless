@@ -40,6 +40,7 @@
 <br>
 <% @names.each do |n| %>
 <button class="btn btn-warning name" id="<%= n.id %>"><%= n.name %></button>
+<div id="voteCount"></div>
 <% end %>
 
 
@@ -50,15 +51,18 @@ $(document).ready(function(){
 	$(".name").on("click", function(event) {
 		$.ajax({
 			type: "POST",
-			url: "localhost:3000/users/<%= @project.user_id %>/projects/<%= @project.id %>",
+			url: "/users/<%= @project.user_id %>/projects/<%= @project.id %>",
 			data: {nameid: this.id, voterid: <%= @current_user.id %>},
 			success: function(data, textStatus, jqXHR) {
-
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert("Error=" + errorThrown);
-        },
-			dataType: "html"
+				console.log(data)
+				console.log(textStatus)
+				console.log(jqXHR)
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+      	console.log("Error=" + errorThrown)
+        alert("Error=" + errorThrown);
+      },
+			dataType: "json"
 		});
 	})
 })

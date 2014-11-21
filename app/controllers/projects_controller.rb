@@ -58,8 +58,18 @@ def vote
   nid = params[:nameid]
   uid = params[:voterid]
   name = Name.find(nid)
-  user = User.fine(uid)
+  user = User.find(uid)
+  project = name.project
   name.liked_by user
+  names = project.names
+  votes = []
+  # binding.pry
+  names.each do |v|
+    vote = {:name => v.name, :totalvotes => v.votes_for.size}
+    votes << vote
+  end
+
+  render json: votes
 end
 
 def edit
