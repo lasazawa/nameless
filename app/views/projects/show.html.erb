@@ -40,11 +40,17 @@
 <br>
 <% @names.each do |n| %>
 <button class="btn btn-warning name" id="<%= n.id %>"><%= n.name %></button>
-<div id="voteCount"></div>
+<div id="voteCount"><%= n.votes_for.size %></div>
 <% end %>
 
 
-
+<script id="voting-template" type="text/x-handlebars-template">
+		{{#each voteData}}
+				<div>
+					{{totalvotes}}
+				</div>
+		{{/each}}
+	</script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -53,10 +59,14 @@ $(document).ready(function(){
 			type: "POST",
 			url: "/users/<%= @project.user_id %>/projects/<%= @project.id %>",
 			data: {nameid: this.id, voterid: <%= @current_user.id %>},
-			success: function(data, textStatus, jqXHR) {
-				console.log(data)
-				console.log(textStatus)
-				console.log(jqXHR)
+			success: function(data, textStatus, jqXHR) { 
+				var source = $("#voting-template").html();
+
+				var template = Handlebars.compile(source);
+
+				var html = template({voteData: data});
+
+				$("#voteCount").html(html);
       },
       error: function(jqXHR, textStatus, errorThrown) {
       	console.log("Error=" + errorThrown)
