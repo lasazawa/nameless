@@ -6,11 +6,33 @@
 
 <h5></h5>
 <% @tags.each do |tag| %>
-  <span class="label label-info">
-    <%= tag.name %>
-  </span>
+<span class="label label-info">
+	<%= tag.name %>
+</span>
 <% end %>
 <br>
 <%= link_to("Edit", edit_user_project_path(@current_user, @project)) %>
+<br>
+<% @names.each do |n| %>
+<button class="btn btn-primary btn-sm name" id="<%= n.id %>"><%= n.name %></button>
+<% end %>
 
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".name").on("click", function(event) {
+		$.ajax({
+			type: "POST",
+			url: "localhost:3000/users/<%= @project.user_id %>/project/<%= @project.id %>/vote",
+			data: {nameid: this.id, voterid: <%= @current_user.id %>},
+			success: console.log("voted"),
+			dataType: "html"
+		});
+	})
+})
+
+</script>
+
+<script>
+engine();
+</script>

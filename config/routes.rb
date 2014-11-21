@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 root 'access#login'
 post 'login', to: 'access#attempt_login'
 get 'logout', to: 'access#logout'
+post 'users/:user_id/project/:id/vote', to: 'projects#vote'
 
 #Users
 resources :users, only: [:new, :create, :show, :edit, :update] do
