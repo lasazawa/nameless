@@ -23,9 +23,14 @@ $(document).ready(function(){
 	$(".name").on("click", function(event) {
 		$.ajax({
 			type: "POST",
-			url: "localhost:3000/users/<%= @project.user_id %>/project/<%= @project.id %>/vote",
+			url: "localhost:3000/users/<%= @project.user_id %>/projects/<%= @project.id %>",
 			data: {nameid: this.id, voterid: <%= @current_user.id %>},
-			success: console.log("voted"),
+			success: function(data, textStatus, jqXHR) {
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert("Error=" + errorThrown);
+        },
 			dataType: "html"
 		});
 	})
