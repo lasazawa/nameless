@@ -87,6 +87,11 @@ def vote
   render json: votes
 end
 
+def name
+  newname = Name.create(name: params[:name], created_by: params[:user], project_id: params[:id])
+  render json: newname
+end
+
 def edit
   @project = Project.find(params[:id])
   @tags = Tag.all
