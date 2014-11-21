@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if(@user.save)
       session[:user_id] = @user.id
       flash[:success] = "You are now logged in!"
-      redirect_to user_path(@user.id)
+      redirect_to edit_user_path(@user.id)
     else
       render :new
     end

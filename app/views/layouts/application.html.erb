@@ -64,6 +64,7 @@
     <% else %>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <% if (@current_user.firstname != nil) %>
         <li class="add-project-btn">
           <%= link_to("Add Project", new_user_project_path(@current_user.id), class: "btn btn-primary navbar-right", id: "add-project-btn") %>
         </li>
@@ -76,6 +77,7 @@
               <li><a href="/logout">Log out</a></li>
             </ul>
         </li>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
     <% end %>
