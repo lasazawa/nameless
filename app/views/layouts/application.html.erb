@@ -31,25 +31,53 @@
 
 
 
-<div class="container-fluid">
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+<!-- test nav-->
+<nav class="navbar navbar-default" role="navigation">
   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <%= image_tag "", class:"navbar-brand" %>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <h4 class="navbar-text navbar-left"><a href="/">Nameless</a></h4>
     </div>
 
     <% if session[:user_id] == nil %>
-      <p class="navbar-text navbar-right"><a href = "/About">About</a></p>
-      <p class="navbar-text navbar-right"><%= link_to("Sign up", controller: 'users', action: 'new') %></p>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <p class="navbar-text navbar-right"><a href = "/About">About</a></p>
+        </li>
+        <li>
+          <p class="navbar-text navbar-right"><%= link_to("Sign up", controller: 'users', action: 'new') %></p>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+
     <% else %>
-      <h4 class="navbar-text navbar-left"><a href="/">Nameless</a></h4>
-      <%= link_to("Add Project", new_user_project_path(@current_user.id), class: "btn btn-primary navbar-right", id: "add-project-btn") %>
-      <p class="navbar-text navbar-right"><a href = "/logout">logout</a></p>
-      <p class="navbar-text navbar-right"><%= link_to(@current_user.username, edit_user_path(@current_user.id))%></a></p>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="add-project-btn">
+          <%= link_to("Add Project", new_user_project_path(@current_user.id), class: "btn btn-primary navbar-right", id: "add-project-btn") %>
+        <li>
+          <p class="navbar-text navbar-right"><a href = "/logout">logout</a></p>
+        </li>
+        <li>
+          <p class="navbar-text navbar-right"><%= link_to(@current_user.username, edit_user_path(@current_user.id), class: "right")%></p>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
     <% end %>
 
+  </div><!-- /.container-fluid -->
+</nav>
 
-
+<!-- end test nav -->
 </nav>
 
 <div class="row">

@@ -29,6 +29,23 @@ h5 {
   line-height: 1.25em;
 }
 
+/*  NAV  */
+..navbar-nav {
+  float:none;
+}
+
+.add-project-btn {
+  float:right;
+}
+
+.navbar-default .navbar-nav>li>a#add-project-btn {
+  color:white;
+  padding:5px 10px;
+  margin-top: 8px;
+}
+ /*  END NAV  */
+
+
 #footer {
   margin-top: 40px;
   padding:20px 0;
@@ -54,10 +71,6 @@ h5 {
 
 .left {
   float:left;
-}
-
-#add-project-btn {
-  margin: 8px 0 0 15px;
 }
 
 .btn-sm {
