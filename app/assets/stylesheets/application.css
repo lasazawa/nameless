@@ -33,7 +33,9 @@ h5 {
 ul.navbar-nav {
   float:none;
 }
-
+h4.navbar-text {
+  margin-left: 0;
+}
 .navbar-nav>li,.navbar-nav>li.add-project-btn {
   float:right;
 }
@@ -43,6 +45,17 @@ ul.navbar-nav {
   margin-right: 20px;
 }
 
+.navbar-nav>li a#nav-user {
+  padding-top:8px;
+  padding-bottom: 8px;
+}
+li.dropdown {
+  margin-right: 15px;
+}
+
+li.dropdown:hover {
+  background-color: rgba(0,0,0,0,0.03);
+}
 .navbar-default .navbar-nav>li>a#add-project-btn {
   color:white;
   padding:5px 10px;
@@ -51,6 +64,13 @@ ul.navbar-nav {
 #add-project-btn:hover {
   background-color: #3071a9;
   border:solid 1px #285e8e;
+}
+
+.avatar-header {
+  height: 32px;
+  width: 32px;
+  border-radius: 16px;
+  margin-right: 4px;
 }
 
  /*  END NAV  */
@@ -118,13 +138,6 @@ h1 span {
   font-weight: normal;
 }
 
-.avatar-header {
-  height: 32px;
-  width: 32px;
-  border-radius: 16px;
-  margin-top: 8px;
-  margin-right: -7px;
-}
 .avatar {
   height: 40px;
   width: 40px;

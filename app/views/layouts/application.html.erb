@@ -65,20 +65,15 @@
       <ul class="nav navbar-nav">
         <li class="add-project-btn">
           <%= link_to("Add Project", new_user_project_path(@current_user.id), class: "btn btn-primary navbar-right", id: "add-project-btn") %>
-        <% if @current_user.picurl != nil %>
-          <li class="dropdown" style="background-color:pink;">
-            <a href="" class="dropdown-toggle">
-              <img class="avatar-header" src="<%= @current_user.picurl %>" alt="avatar">
-              <p class="navbar-text navbar-right"><%= link_to(@current_user.firstname, edit_user_path(@current_user.id))%></p>
-            </a>
-          </li>
-        <% else %>
-          <li>
-            <p class="navbar-text navbar-right"><%= link_to(@current_user.firstname, edit_user_path(@current_user.id))%></p>
-          </li>
-        <% end %>
-        <li>
-          <p class="navbar-text navbar-right"><a href = "/logout">Log out</a></p>
+        </li>
+        <li class="dropdown">
+            <a id="nav-user" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <img class="avatar-header" src="<%= @current_user.picurl %>" alt="avatar">
+            <%= @current_user.firstname %> <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><%= link_to("My Profile", edit_user_path(@current_user.id))%></li>
+              <li><a href="/logout">Log out</a></li>
+            </ul>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -89,7 +84,7 @@
 
 <!-- end test nav -->
 </nav>
-
+<br>
 <div class="row">
 
 <% flash.each do |key, value| %>
