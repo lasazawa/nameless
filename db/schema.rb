@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141120230319) do
   create_table "names", force: true do |t|
     t.integer  "project_id"
     t.string   "name"
+    t.string   "created_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
