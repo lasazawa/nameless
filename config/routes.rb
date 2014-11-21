@@ -5,6 +5,7 @@ root 'access#login'
 post 'login', to: 'access#attempt_login'
 get 'logout', to: 'access#logout'
 post 'users/:user_id/projects/:id', to: 'projects#vote', as: 'vote'
+post 'users/:id/tag', to: 'users#tag', as: 'tag'
 
 #Users
 resources :users, only: [:new, :create, :show, :edit, :update] do

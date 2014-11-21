@@ -33,6 +33,11 @@ def edit
   end
 end
 
+def tag
+  newtag = Tag.create(name: params[:tagname], created_by: params[:user])
+  render json: newtag
+end
+
  def update
     @user = User.find(params[:id])
     @user.update_columns(user_params_update)
