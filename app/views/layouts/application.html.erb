@@ -9,6 +9,7 @@
     <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
     <script src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>
 
+    <meta name="viewport" content="initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-flat.css">
 
@@ -64,11 +65,20 @@
       <ul class="nav navbar-nav">
         <li class="add-project-btn">
           <%= link_to("Add Project", new_user_project_path(@current_user.id), class: "btn btn-primary navbar-right", id: "add-project-btn") %>
+        <% if @current_user.picurl != nil %>
+          <li class="dropdown" style="background-color:pink;">
+            <a href="" class="dropdown-toggle">
+              <img class="avatar-header" src="<%= @current_user.picurl %>" alt="avatar">
+              <p class="navbar-text navbar-right"><%= link_to(@current_user.firstname, edit_user_path(@current_user.id))%></p>
+            </a>
+          </li>
+        <% else %>
+          <li>
+            <p class="navbar-text navbar-right"><%= link_to(@current_user.firstname, edit_user_path(@current_user.id))%></p>
+          </li>
+        <% end %>
         <li>
-          <p class="navbar-text navbar-right"><a href = "/logout">logout</a></p>
-        </li>
-        <li>
-          <p class="navbar-text navbar-right"><%= link_to(@current_user.username, edit_user_path(@current_user.id), class: "right")%></p>
+          <p class="navbar-text navbar-right"><a href = "/logout">Log out</a></p>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
