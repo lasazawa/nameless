@@ -43,4 +43,4 @@ gem 'braintree'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
+gem 'handlebars_assets'

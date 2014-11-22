@@ -48,10 +48,9 @@
 					<button type="button"class="tag btn btn-info btn-sm" id="<%= t.id %>" style="margin-top:5px"><%= t.name %></button>
 				<% end %>
 			<% end %>
-			<div class="tag btn btn-info btn-sm newtagsdiv"></div>
-			<input id="newtag" type="text"><button type="button" id="submittag" class="btn btn-sm btn-success">Submit</button>
-			<input type="hidden" name="tags" id="tagsinput" value="">
 		</div>
+		<input id="newtag" type="text"><button type="button" id="submittag" class="btn btn-sm btn-success">Submit</button>
+		<input type="hidden" name="tags" id="tagsinput" value="">
 
       <!-- photo upload -->
       <h4>Upload photos</h4>
@@ -102,22 +101,22 @@ $(document).ready(function(){
 				type: "POST",
 				url: "/users/<%= @current_user.id %>/tag",
 				data: {tagname: $("#newtag").val(), user: <%= @current_user.id %>},
-				success: function(data, textStatus, jqXHR) {
+				success: function(data) {
 					var tagdata = data
 					console.log(tagdata)
-					var source = $("#tag-template").html();
+					var newTag = HandlebarsTemplates["tags/tag"](tagdata);
+					$('#tag_container').append(newTag);
+					$('#newCreatedTag').prop("id", tagdata.id);
 
-					var template = Handlebars.compile(source);
+					}
 
-					var html = template({tagData: data});
-
-					$(".newtagsdiv").html(tagdata.name);
-					$('.newtagsdiv').prop("id", tagdata.id)
-				},
-				error: function(jqXHR, textStatus, errorThrown) {
-					alert("Error=" + errorThrown);
-				},
-				dataType: "json"
+					// $(".newtagsdiv").html(tagdata.name);
+					// $('.newtagsdiv').prop("id", tagdata.id)
+				// },
+				// error: function(data) {
+				// 	alert("Error=" + errorThrown);
+				// },
+				// dataType: "json"
 			});
 		}
 		$('#newtag').val("");

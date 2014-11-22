@@ -145,8 +145,12 @@ h1 span {
   border:solid 1px rgba(0,0,0,0.05);
 }
 
-.btn.active:focus, .btn:active:focus {
+button.btn, button.btn.active, .btn.active:focus, .btn:active:focus {
   outline: none;
+}
+
+.newTag {
+  margin-right: 5px;
 }
 
 @media (max-width: 768px) {

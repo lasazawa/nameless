@@ -42,8 +42,8 @@
 <button class="btn btn-warning name" id="<%= n.id %>"><%= n.name %></button>
 <div id="voteCount"><%= n.votes_for.size %></div>
 <% end %>
-<div id="newnamediv" ></div>
-<input id="newname" type="text"><button type="button" id="submitname" class="btn btn-sm btn-success">Submit new Name</button>
+<div id="newnamediv" class="btn btn-warning name"></div>
+<input id="newname" type="text"><button type="button" id="submitname" class="btn btn-sm btn-success">Submit</button>
 
 
 
@@ -62,7 +62,7 @@ $(document).ready(function(){
 			type: "POST",
 			url: "/users/<%= @project.user_id %>/projects/<%= @project.id %>",
 			data: {nameid: this.id, voterid: <%= @current_user.id %>},
-			success: function(data, textStatus, jqXHR) { 
+			success: function(data, textStatus, jqXHR) {
 				var source = $("#voting-template").html();
 
 				var template = Handlebars.compile(source);
