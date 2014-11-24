@@ -9,27 +9,28 @@
     <% end %>
 
     <!-- names & votes -->
-    <ul id="name_list" style="padding-left:0;border-bottom:solid 1px rgba(0,0,0,0.08)">
+    <h5>suggested names</h5>
+    <ul id="name_list" >
       <% @names.each do |n| %>
-        <li style="border-top:solid 1px rgba(0,0,0,0.08); padding 0 0 10px; list-style-type:none;" >
+        <li >
           <div>
-            <h3 style="margin:10px 0;" >
+          <span id="vote_<%= n.id %>" class="vote-count"><%= n.votes_for.size %></span>
+            <h3 id="name_header" >
             <%= n.name %>
-            <span id="vote_<%= n.id %>"><%= n.votes_for.size %></span>
-            <span><button id="<%= n.id %>" type="button" class="like-name btn btn-default btn-sm">Like</button></span>
+            <span><button id="<%= n.id %>" type="button" class="right like-name btn btn-default btn-sm">Like</button></span>
             </h3>
           </div>
         </li>
       <% end %>
 
       <!-- new name added -->
-      <li style="border-top:solid 1px rgba(0,0,0,0.08); padding 0 0 10px; list-style-type:none;">
+      <li class="new_name_li">
         <div id="newnamediv" ></div>
       </li>
 
       <!-- submit new name -->
-      <li style="border-top:solid 1px rgba(0,0,0,0.08); padding 10px 0; list-style-type:none;">
-        <input id="newname" type="text"><button type="button" id="submitname" class="btn btn-sm btn-success">Submit</button>
+      <li class="add-new-name">
+        <input id="newname" type="text" placeholder="Suggest a name" class="form-control"><button type="button" id="submitname" class="btn btn-success">Submit</button>
       </li>
 
     </ul>

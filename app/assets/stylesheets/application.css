@@ -150,7 +150,57 @@ button.btn, button.btn.active, .btn.active:focus, .btn:active:focus {
   outline: none;
 }
 
+#name_list {
+  padding-left:0;
+  border-radius: 5px;
+  border:solid 1px rgba(0,0,0,0.08);
+}
+
+#name_header {
+  color:#0297C3;
+  margin: 2px 0 3px;
+  display:inline;
+}
+
+#name_list li {
+  padding: 10px;
+  list-style-type:none;
+  border-top:solid 1px rgba(0,0,0,0.08);
+}
+#name_list li:first-child, #name_list li:last-child {
+  border-top: none;
+}
+
+#name_list li.new_name_li{
+  padding:0 10px;
+}
+
 .newTag {
+  margin-right: 5px;
+}
+
+#newname {
+  width: 70%;
+  display: inline-block;
+}
+
+.like-name.btn {
+  margin-top: -2px;
+}
+
+.add-new-name {
+  padding: 10px;
+  list-style-type: none;
+  background-color: rgba(0,0,0,0.03);
+}
+
+.vote-count {
+  font-weight: bold;
+  padding: 7px 8px 5px;
+  border-radius: 2px;
+  background-color: blue;
+  color: white;
+  background-color: #5bc0de;
   margin-right: 5px;
 }
 

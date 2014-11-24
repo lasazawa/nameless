@@ -72,7 +72,7 @@ def show
   @project = Project.find(params[:id])
   @tags = @project.tags
   @user = User.find(params[:user_id])
-  @names = @project.names
+  @names = @project.names.sort_by{ |x| -x.votes_for.size}
 end
 
 def vote
