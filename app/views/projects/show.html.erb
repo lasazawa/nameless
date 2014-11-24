@@ -79,7 +79,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  $(".like-name").on("click", function(event) {
+  $("#name_list").on("click", ".like-name", function(event) {
     $.ajax({
       type: "POST",
       url: "/users/<%= @project.user_id %>/projects/<%= @project.id %>",
@@ -110,7 +110,7 @@ $(document).ready(function(){
         data: {name: $("#newname").val(), user: <%= @current_user.id %>},
         success: function(data) {
           var namedata = data
-          console.log(namedata)
+          console.log(namedata.name + ", " + namedata.id)
           var newTag = HandlebarsTemplates["names/name"](namedata)
           $("#newnamediv").append(newTag);
           $("#newname").val("")
