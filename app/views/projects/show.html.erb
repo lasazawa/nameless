@@ -118,8 +118,7 @@ $(document).ready(function(){
       data: {nameid: this.id, voterid: <%= @current_user.id %>},
       success: function(data, textStatus, jqXHR) {
         console.log(data);
-        datas = data
-        $('#vote_' + event.target.id).html(datas.vote)
+        $('#vote_' + event.target.id).html(data.vote)
         console.log($('#vote_' + event.target.id).html())
       },
       error: function(jqXHR, textStatus, errorThrown) {
