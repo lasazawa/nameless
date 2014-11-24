@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
  def create
     @user = User.create(user_params)
+    @user.picurl = "https://cdn2.iconfinder.com/data/icons/free-basic-icon-set-2/300/2-512.png"
     if(@user.save)
       session[:user_id] = @user.id
       flash[:success] = "You are now logged in!"

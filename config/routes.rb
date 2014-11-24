@@ -12,8 +12,12 @@ post 'users/:user_id/projects/:id/name', to: 'projects#name', as: 'name'
 resources :users, only: [:new, :create, :show, :edit, :update] do
 
   #Projects
-  resources :projects,  only: [:show, :new, :create, :edit,  :update]
+  resources :projects,  only: [:show, :new, :create, :edit,  :update] do
 
+    #Comments
+    resources :comments, only: [:index, :show, :create]
+
+  end
 end
 
 #tags

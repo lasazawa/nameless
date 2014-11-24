@@ -11,9 +11,11 @@ def new
 end
 
 def create
-
   #store to database & push more emails into email array
   @project = Project.create(project_params.merge(user_id: params[:user_id]))
+  if @project.photo_url == ""
+    @project.photo_url = "http://static.squarespace.com/static/52d03994e4b0431c4901495a/t/52d194fae4b06f651ac0a8df/1389466875249/Connect%20Global%20Projects%20Icon.006.png"
+  end
 
   #load email arroy with user specified people
   emailstring = @project.emails
@@ -43,16 +45,19 @@ def create
     );
 
   #send the emails
-  emailarray.each do | email |
-
+  if emailarray.length > 0
+    emailarray.each do | email |
     client = SendGrid::Client.new(api_user: 'namelessapp', api_key: 'hellohello3')
-    mail = SendGrid::Mail.new do |m|
-      m.to = email
-      m.from = @project.user.username + '@namelessapp.com'
-      m.subject = 'Help me name my new project'
-      m.text = 'I have a new project and would love your help naming it.  the idea is' + @project.description
-    end
+
+      mail = SendGrid::Mail.new do |m|
+        m.to = email
+        m.from = @project.user.username + '@namelessapp.com'
+        m.subject = 'Help me name my new project'
+        m.text = 'I have a new project and would love your help naming it.  the idea is' + @project.description
+      end
+
     puts client.send(mail)
+    end
   end
 
   #moveon.org
@@ -73,6 +78,7 @@ def show
   @tags = @project.tags
   @user = User.find(params[:user_id])
   @names = @project.names.sort_by{ |x| -x.votes_for.size}
+  @comments = Comment.where project_id: params[:id]
 end
 
 def vote

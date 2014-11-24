@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2 content">
 
-<h1> My Projects <small><%= link_to("{+}", new_user_project_path(@current_user.id)) %> </small></h1>
+<h1> My Projects</h1>
 <br>
 
   <% @current_user.projects.each do |project| %>
@@ -14,11 +14,11 @@
               <a href="/users/<%= @current_user.id %>/projects/<%= project.id %>"><h3 class="marginless"><%= project.name %></h3></a><br>
               <h5>by, <%= project.user.username %></h5>
               <%= project.description %><br>
-              <%= link_to("view", user_project_path(@current_user.id, project.id))%></p>
+              <%= link_to("View", user_project_path(@current_user.id, project.id))%>
+              <%= link_to("Edit", edit_user_project_path(@current_user.id, project.id)) %></p>
             </div>
           </div>
   <% end  %>
-
 
 <hr>
 <h1> All Projects </h1>

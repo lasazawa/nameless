@@ -1,5 +1,32 @@
 
 <div class="row">
+
+    <div class="col-md-4">
+      <img src="<%= @project.photo_url%>" class="project-image" style="display:block;">
+      <br>
+      <!-- avatar -->
+      <h5>Project Owner</h5>
+      <div class="row">
+      <div class="col-md-2">
+        <img class="avatar" src=" <%= @user.picurl %> " alt="profile pic">
+      </div>
+      <div class="col-md-10">
+        <p><%= @user.firstname %> <%= @user.lastname %> </p>
+      </div>
+    </div>
+    <!-- tags -->
+    <br>
+    <h5>Related Tags</h5>
+    <% @tags.each do |tag| %>
+      <span class="label label-info">
+        <%= tag.name %>
+      </span>
+    <% end %>
+      <br>
+    <br>
+  </div>
+
+
   <div class="col-md-8">
     <h1 class="project-header">
       <%= @project.name %> Project
@@ -40,32 +67,37 @@
     <h5>Description</h5>
     <p><%= @project.description %></p>
 
+    <hr>
+    <!-- comment -->
+    <div id="comments">
+    <h5>Comments</h5>
+        <% @comments.each do |comment|%>
+          <div id="comment">
+            <div class="row">
+              <div class="col-md-2">
+                <img class="mini img-circle" src="<%= @user.picurl %>">
+              </div>
+              <div class="col-md-10">
+                <small><%=comment.user.firstname%> said...</small><br>
+                <%= comment.body %>
+              </div>
+           </div>
+           <hr>
+          </div>
+        <% end %>
+        </div>
+        <div class="row">
+           <div class="col-md-2">
+              <img class="mini img-circle" src="<%= @user.picurl %>">
+            </div>
+            <div class="col-md-10">
+              <small>add a comment...</small>
+              <span><input type="textarea" class="form-control" id="comment-input"></span>
+            </div>
+          </div>
+        </div>
+  </div>
 
-  </div>
-  <div class="col-md-4">
-    <img src="<%= @project.photo_url%>" class="project-image" style="display:block;">
-    <br>
-    <!-- avatar -->
-    <h5>Project Owner</h5>
-    <div class="row">
-      <div class="col-md-2">
-        <img class="avatar" src=" <%= @user.picurl %> " alt="profile pic">
-      </div>
-      <div class="col-md-10">
-        <p><%= @user.firstname %> <%= @user.lastname %></p>
-      </div>
-    </div>
-    <!-- tags -->
-    <br>
-    <h5>Related Tags</h5>
-    <% @tags.each do |tag| %>
-      <span class="label label-info">
-        <%= tag.name %>
-      </span>
-    <% end %>
-      <br>
-    <br>
-  </div>
 </div>
 
 <br>
@@ -87,8 +119,7 @@ $(document).ready(function(){
       data: {nameid: this.id, voterid: <%= @current_user.id %>},
       success: function(data, textStatus, jqXHR) {
         console.log(data);
-        datas = data
-        $('#vote_' + event.target.id).html(datas.vote)
+        $('#vote_' + event.target.id).html(data.vote)
         console.log($('#vote_' + event.target.id).html())
       },
       error: function(jqXHR, textStatus, errorThrown) {
@@ -125,6 +156,49 @@ $(document).ready(function(){
   })
 })
 </script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+      //add a comment
+
+      $("#comment-input").keypress(function (e){
+      if (e.which == 13 ){
+        event.preventDefault();
+        if ($("#comment-input").val() !== "") {
+          console.log("comment-input")
+          var postData = {comment: {body: $('#comment-input').val()}}
+          var postURL = "<%=user_project_comments_path(@current_user, @project.id)%>"
+          $.ajax(
+          {
+              url : postURL,
+              type: "POST",
+              data : postData,
+              error : function(returnval) {
+                console.log("fail");
+              },
+              success : function (returnval) {
+                console.log("success");
+                console.log(returnval.comment + returnval.user + returnval.image)
+                $('#comments').append("<div id='comment'><div class='row'><div class='col-md-2'><img class='mini img-circle' src= '" + returnval.image + "'></div><div class='col-md-10'><small>" + returnval.user + " said...</small><br>" + returnval.comment + "</div></div><hr></div>");
+                $('#comment-input').val("");
+              }
+          })
+        }
+      }
+    });
+
+
+
+
+  });
+
+</script>
+
+
+
 <script>
 engine();
 </script>
