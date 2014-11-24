@@ -58,3 +58,12 @@ h3{
 .modal-backdrop {
     background-color: lightgrey;
 }
+
+.payment-background{
+  background-color: lightgrey;
+  padding-left: 10px;
+}
+
+.payment-background h4{
+  margin-bottom: 0px;
+}

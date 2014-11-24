@@ -43,17 +43,19 @@
       <span class="btn btn-default btn-file">Browse <input type="file" id="fileUploader"></span>
       <%= p.hidden_field(:photo_url, id: "url") %>
       <br>
-      <hr>
 
       <!-- payment nonce -->
       <%= p.hidden_field(:nonce, id: "nonce") %>
 
       <!-- payment -->
+      <div class="payment-background">
+      <hr>
       <h4>Expand your audience</h4>
       <p>need more help with your naming?  poll relevant people from the nameless community.</p>
-      <span class="btn btn-info btn-sm" id="expand" data-toggle="modal" data-target="#myModal" >EXPAND AUDIENCE</span>
+      <span class="btn btn-info btn-sm" id="expand" data-toggle="modal" data-target="#myModal" >EXPAND AUDIENCE</span> <span class="btn btn-success btn-sm" id="paid">     Paid     </span>
       <br>
       <hr>
+      </div>
 
       <%= p.submit("Add Project", class: "btn btn-lg btn-primary right") %>
 
@@ -95,6 +97,7 @@
 <script>
   $(document).ready(function(){
 
+     $('#paid').hide();
      $('#expand').click(function() {
        $('.modal-dialog').show();//Form shows on button click
      });
@@ -119,6 +122,9 @@
                 console.log(payid);
                 $('.modal-dialog').hide();
                 $('#myModal').hide();
+                $('#paid').show();
+                $('#expand').remove();
+                $('#expand').addClass('btn-default');
               },
               success : function (returnval) {console.log("fail");}
           });
