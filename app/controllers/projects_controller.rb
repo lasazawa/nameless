@@ -11,7 +11,6 @@ def new
 end
 
 def create
-
   #store to database & push more emails into email array
   @project = Project.create(project_params.merge(user_id: params[:user_id]))
 
@@ -43,16 +42,19 @@ def create
     );
 
   #send the emails
-  emailarray.each do | email |
-
+  if emailarray.length > 0
+    emailarray.each do | email |
     client = SendGrid::Client.new(api_user: 'namelessapp', api_key: 'hellohello3')
-    mail = SendGrid::Mail.new do |m|
-      m.to = email
-      m.from = @project.user.username + '@namelessapp.com'
-      m.subject = 'Help me name my new project'
-      m.text = 'I have a new project and would love your help naming it.  the idea is' + @project.description
-    end
+
+      mail = SendGrid::Mail.new do |m|
+        m.to = email
+        m.from = @project.user.username + '@namelessapp.com'
+        m.subject = 'Help me name my new project'
+        m.text = 'I have a new project and would love your help naming it.  the idea is' + @project.description
+      end
+
     puts client.send(mail)
+    end
   end
 
   #moveon.org
@@ -72,6 +74,7 @@ def show
   @project = Project.find(params[:id])
   @tags = @project.tags
   @user = User.find(params[:user_id])
+  @comments = Comment.where project_id: params[:id]
   @names = @project.names
 end
 
