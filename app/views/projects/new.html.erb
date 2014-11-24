@@ -51,7 +51,7 @@
       <!-- payment -->
       <h4>Expand your audience</h4>
       <p>need more help with your naming?  poll relevant people from the nameless community.</p>
-      <span class="btn btn-info btn-sm" id="expand">EXPAND AUDIENCE</span>
+      <span class="btn btn-info btn-sm" id="expand" data-toggle="modal" data-target="#myModal" >EXPAND AUDIENCE</span>
       <br>
       <hr>
 
@@ -62,13 +62,31 @@
 
       <br>
 
-      <form id="braintree">
-        <input data-braintree-name="number" value="4111111111111111">
-        <input data-braintree-name="expiration_date" value="10/20">
-        <input type="submit" id="submit" value="Pay">
-      </form>
-    <br>
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">For $3.99<small> we will ping all the relevant people</small></h4>
+            </div>
+            <div class="modal-body">
+              <form id="braintree">
+                <input data-braintree-name="number" value="4111111111111111" class="form-control" type="text">
+                <br>
+                <input data-braintree-name="expiration_date" value="10/20" class="form-control" type="text">
+                <br>
+                <input type="submit" id="submit" value="Pay" class="btn btn-primary btn-lg btn-block">
+              </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="close" class="btn btn-white" data-dismiss="modal">Close</a>
+            </div>
+        </div><!-- /.modal-content -->
+      </div>
+      </div>
 
+
+<input name="payment_method_nonce" type="hidden" value="3a883357-2099-450a-aa56-c2e6263d5cc9">
 
   </div>
   <div class="col-md-2"></div>
@@ -77,11 +95,8 @@
 <script>
   $(document).ready(function(){
 
-     $('#braintree').hide(); //Initially form wil be hidden.
-
      $('#expand').click(function() {
-       $('#braintree').toggle();//Form shows on button click
-       console.log('ping');
+       $('.modal-dialog').show();//Form shows on button click
      });
 
       braintree.setup( "<%= @client_token %> ", "custom", {id: "braintree"});
@@ -89,26 +104,25 @@
       //callback handler for form submit
       $("#braintree").submit(function(e)
       {
+          console.log("submit")
           e.preventDefault(); //STOP default action
           var postData = $(this).serializeArray();
-          var formURL = $(this).attr("action");
           $.ajax(
           {
-              url : formURL,
+              url : "/pay",
               type: "POST",
-              data : postData
+              data : postData,
+              error : function(returnval) {
+                console.log("success");
+                var payid = $( "input[name='payment_method_nonce']" ).val();
+                $('#nonce').val(payid);
+                console.log(payid);
+                $('.modal-dialog').hide();
+                $('#myModal').hide();
+              },
+              success : function (returnval) {console.log("fail");}
           });
         });
-
-      $("#braintree").submit(); //Submit  the FORM
-
-      $("[name='commit']").hover( function (){
-          var payid = $( "input[name='payment_method_nonce']" ).val();
-          console.log(payid);
-          $('#nonce').val(payid);
-      });
-
-
 
 
     var projectTags = [];

@@ -112,14 +112,15 @@ li.dropdown:hover {
 }
 
 .btn-info.active {
-  background-color: #19A5CF;
+  background-color: #009FCF;
+  border:solid 1px #0E91B8;
   box-shadow: none;
 }
 
 .btn-info.active:hover {
-  background-color: #0599C5;
+  background-color: #0297C3;
   box-shadow: none;
-  border:solid 1px #0C8CB2;
+  border:solid 1px #0381A6;
 }
 
 .label-info {
