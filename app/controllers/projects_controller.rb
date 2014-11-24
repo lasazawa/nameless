@@ -76,19 +76,10 @@ def show
 end
 
 def vote
-
-
-  name = Name.find(params[:nameid])
+  @name = Name.find(params[:nameid])
   user = User.find(params[:voterid])
-  project = name.project
-  name.liked_by user
-  names = project.names
-  votes = []
-  names.each do |v|
-    vote = {:name => v.name, :totalvotes => v.votes_for.size, :id => v.id}
-    votes << vote
-  end
-
+  @name.liked_by user
+  votes = {:vote => @name.votes_for.size}
   render json: votes
 end
 

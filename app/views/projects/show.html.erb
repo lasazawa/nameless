@@ -86,13 +86,9 @@ $(document).ready(function(){
       data: {nameid: this.id, voterid: <%= @current_user.id %>},
       success: function(data, textStatus, jqXHR) {
         console.log(data);
-
-        for (var i = 0; i < data.length; i++) {
-          var dataId = data[i].id
-          $('vote_' + dataId).val();
-          console.log( $('vote_' + dataId).val());
-        };
-
+        datas = data
+        $('#vote_' + event.target.id).html(datas.vote)
+        console.log($('#vote_' + event.target.id).html())
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log("Error=" + errorThrown)
