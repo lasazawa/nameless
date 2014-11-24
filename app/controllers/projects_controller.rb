@@ -12,18 +12,37 @@ end
 
 def create
 
-  #store to database
+  #store to database & push more emails into email array
   @project = Project.create(project_params.merge(user_id: params[:user_id]))
+
+  #load email arroy with user specified people
+  emailstring = @project.emails
+  emailarray = emailstring.split(",")
+
+  # add tags and emails associated with tags
   tags = params[:tags]
   tagsArray = tags.split(",")
   intTagsArray = tagsArray.each do |t|
     tag = Tag.find(t)
     @project.tags << tag
+
+    # add email addresses to tag array if nonce is valid
+    if project_params[:nonce] != nil
+      if tag.users.exists?
+        emailarray << tag.users.first.email
+        puts "ping"
+      end
+    end
   end
 
-  #send invite emails
-  emailstring = @project.emails
-  emailarray = emailstring.split(",")
+  #charge the card
+  nonce = project_params[:nonce]
+  result = Braintree::Transaction.sale(
+      :amount => "4.44",
+      :payment_method_nonce => nonce,
+    );
+
+  #send the emails
   emailarray.each do | email |
 
     client = SendGrid::Client.new(api_user: 'namelessapp', api_key: 'hellohello3')
@@ -35,20 +54,6 @@ def create
     end
     puts client.send(mail)
   end
-
-  #charge the card
-  nonce = project_params[:nonce]
-  userid = params[:user_id]
-
-    result = Braintree::Transaction.sale(
-      :amount => "4.44",
-      :payment_method_nonce => nonce,
-      :customer => {
-        :id => userid
-      },
-      :options => {
-        :store_in_vault => true
-      });
 
   #moveon.org
   if @project.save
@@ -124,7 +129,13 @@ def update
   end
 end
 
+def pay
+  render :json => "done"
+end
+
+
 private
+
   def project_params
     params.require(:project).permit(:name, :description, :photo_url, :emails, :nonce)
   end

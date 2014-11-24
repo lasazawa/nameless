@@ -54,3 +54,7 @@ h3{
     cursor: inherit;
     display: block;
 }
+
+.modal-backdrop {
+    background-color: lightgrey;
+}
