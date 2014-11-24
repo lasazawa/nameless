@@ -71,10 +71,10 @@ def show
 end
 
 def vote
-  nid = params[:nameid]
-  uid = params[:voterid]
-  name = Name.find(nid)
-  user = User.find(uid)
+
+
+  name = Name.find(params[:nameid])
+  user = User.find(params[:voterid])
   project = name.project
   name.liked_by user
   names = project.names
@@ -94,10 +94,14 @@ end
 
 def edit
   @project = Project.find(params[:id])
-  @tags = Tag.all
-  @tagged = []
-  @project.tags.each do |x|
-    @tagged << x.id
+  if @project.user = @current_user
+    @tags = Tag.all
+    @tagged = []
+    @project.tags.each do |x|
+      @tagged << x.id
+    end
+  else 
+    redirect_to "/"
   end
   # pass all tags
   # and tags selected
