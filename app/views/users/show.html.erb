@@ -11,8 +11,8 @@
               <img src="<%= project.photo_url %>" class="thumbnail">
             </div>
             <div class="col-md-8">
-              <p><h3 class="marginless"><%= project.name %></h3><br>
-              submitted by, <%= project.user.username %><br>
+              <a href="/users/<%= @current_user.id %>/projects/<%= project.id %>"><h3 class="marginless"><%= project.name %></h3></a><br>
+              <h5>by, <%= project.user.username %></h5>
               <%= project.description %><br>
               <%= link_to("view", user_project_path(@current_user.id, project.id))%></p>
             </div>
@@ -31,8 +31,8 @@
               <img src="<%= project.photo_url %>" class="thumbnail">
             </div>
             <div class="col-md-8">
-              <p><h3 class="marginless"><%= project.name %></h3><br>
-              submitted by, <%= project.user.username %><br>
+              <a href="/users/<%= @current_user.id %>/projects/<%= project.id %>"><h3 class="marginless"><%= project.name %></h3></a><br>
+              <h5>by, <%= project.user.username %></h5>
               <%= project.description %><br>
               <%= link_to("view", user_project_path(@current_user.id, project.id))%></p>
             </div>
