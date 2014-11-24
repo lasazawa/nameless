@@ -67,3 +67,10 @@ h3{
 .payment-background h4{
   margin-bottom: 0px;
 }
+
+.mini{
+  height: 50px;
+  width: 50px;
+  border: 1px solid grey ;
+  margin-top: 5px;
+}
