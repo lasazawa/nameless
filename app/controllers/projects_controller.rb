@@ -85,7 +85,7 @@ def vote
   names = project.names
   votes = []
   names.each do |v|
-    vote = {:name => v.name, :totalvotes => v.votes_for.size}
+    vote = {:name => v.name, :totalvotes => v.votes_for.size, :id => v.id}
     votes << vote
   end
 
@@ -105,7 +105,7 @@ def edit
     @project.tags.each do |x|
       @tagged << x.id
     end
-  else 
+  else
     redirect_to "/"
   end
   # pass all tags

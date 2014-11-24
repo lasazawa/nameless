@@ -15,8 +15,8 @@
           <div>
             <h3 style="margin:10px 0;" >
             <%= n.name %>
-            <span><%= n.votes_for.size %></span>
-            <span><button id="<%= n.id %>" class="like-name btn btn-default btn-sm">Like</button></span>
+            <span id="vote_<%= n.id %>"><%= n.votes_for.size %></span>
+            <span><button id="<%= n.id %>" type="button" class="like-name btn btn-default btn-sm">Like</button></span>
             </h3>
           </div>
         </li>
@@ -86,10 +86,12 @@ $(document).ready(function(){
       data: {nameid: this.id, voterid: <%= @current_user.id %>},
       success: function(data, textStatus, jqXHR) {
         console.log(data);
-        // var source = $("#voting-template").html();
-        // var template = Handlebars.compile(source);
-        // var html = template({voteData: data});
-        // $("#voteCount").html(html);
+
+        for (var i = 0; i < data.length; i++) {
+          var dataId = data[i].id
+          $('vote_' + dataId).val();
+          console.log( $('vote_' + dataId).val());
+        };
 
       },
       error: function(jqXHR, textStatus, errorThrown) {
@@ -113,7 +115,7 @@ $(document).ready(function(){
         success: function(data) {
           var namedata = data
           console.log(namedata)
-          var newTag = HandlebarsTemplates["tags/tag"](namedata)
+          var newTag = HandlebarsTemplates["names/name"](namedata)
           $("#newnamediv").append(newTag);
           $("#newname").val("")
         },
