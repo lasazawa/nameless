@@ -9,8 +9,8 @@ function engine(){
 
         var projectTags = [];
 
-        var parseAPPID = ENV['PARSE_APPID_KEY'];
-        var parseJSID = ENV['PARSE_JS_KEY'];
+        var parseAPPID = "WaIQr0ALAedB6JhACwDdqAJXN5m0kBizefvqIRMd"
+        var parseJSID = "JWFUQveemVMqiwfgLY5GVDrjCF9t3HQpv1wvE0Z1"
 
         //Initialize Parse
         Parse.initialize(parseAPPID,parseJSID);
