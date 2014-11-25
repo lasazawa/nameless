@@ -41,6 +41,7 @@
 
 		<div class="form-group">
 		<div id="tag_container" class="form-group">
+		<h4>Select of create tags related to yourself</h4>
 			<% @tags.each do |t| %>
 				<% if @tagged.include? t.id %>
 					<button type="button"class="tag btn btn-info btn-sm active" id="<%= t.id %>" style="margin-top:5px"><%= t.name %></button>
@@ -106,7 +107,7 @@ $(document).ready(function(){
 					console.log(tagdata)
 					var newTag = HandlebarsTemplates["tags/tag"](tagdata);
 					$('#tag_container').append(newTag);
-					$('#newCreatedTag').prop("id", tagdata.id);
+					$('.newTag').prop("id", tagdata.id);
 
 					}
 				// error: function(data) {
