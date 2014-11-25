@@ -40,6 +40,4 @@ class ApplicationController < ActionController::Base
     Braintree::Configuration.private_key = "1feff42d1bc6d56ae0f7bf0969a5fb0b"
   end
 
-
 end
-

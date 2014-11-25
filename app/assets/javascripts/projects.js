@@ -9,8 +9,8 @@ function engine(){
 
         var projectTags = [];
 
-        var parseAPPID = "WaIQr0ALAedB6JhACwDdqAJXN5m0kBizefvqIRMd";
-        var parseJSID = "JWFUQveemVMqiwfgLY5GVDrjCF9t3HQpv1wvE0Z1";
+        var parseAPPID = "WaIQr0ALAedB6JhACwDdqAJXN5m0kBizefvqIRMd"
+        var parseJSID = "JWFUQveemVMqiwfgLY5GVDrjCF9t3HQpv1wvE0Z1"
 
         //Initialize Parse
         Parse.initialize(parseAPPID,parseJSID);
@@ -23,7 +23,7 @@ function engine(){
                 var name = "photo.jpg";
 
                 console.log("here goes nothing...");
-                $('#pic').attr('src', "/assets/loader.gif");
+                $('#pic').attr('src', "/images/loader.gif");
 
                 var parseFile = new Parse.File(name, file);
                 parseFile.save().then(

@@ -44,7 +44,7 @@ gem 'braintree'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'handlebars_assets'
-
+gem "figaro"
 
 group :production do
   gem 'rails_12factor'
