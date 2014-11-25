@@ -8,10 +8,10 @@
       <h5>Project Owner</h5>
       <div class="row">
       <div class="col-md-2">
-        <img class="avatar" src=" <%= @user.picurl %> " alt="profile pic">
+        <img class="avatar" src=" <%= @project.user.picurl %> " alt="profile pic">
       </div>
       <div class="col-md-10">
-        <p><%= @user.firstname %> <%= @user.lastname %> </p>
+        <p><%= @project.user.firstname %> <%= @project.user.lastname %> </p>
       </div>
     </div>
     <!-- tags -->
@@ -75,7 +75,7 @@
           <div id="comment">
             <div class="row">
               <div class="col-md-2">
-                <img class="mini img-circle" src="<%= @user.picurl %>">
+                <img class="mini img-circle" src="<%= comment.user.picurl %>">
               </div>
               <div class="col-md-10">
                 <small><%=comment.user.firstname%> said...</small><br>
@@ -164,9 +164,11 @@ $(document).ready(function(){
   $(document).ready(function(){
       //add a comment
 
-      $("#comment-input").keypress(function (e){
+      $("#comment-input").keydown(function (e){
       if (e.which == 13 ){
-        event.preventDefault();
+
+        e.defaultPrevented
+
         if ($("#comment-input").val() !== "") {
           console.log("comment-input")
           var postData = {comment: {body: $('#comment-input').val()}}
