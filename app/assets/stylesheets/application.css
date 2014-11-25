@@ -174,11 +174,17 @@ button.btn, button.btn.active, .btn.active:focus, .btn:active:focus {
 #name_list li.new_name_li{
   padding:0 10px;
 }
-
+.tag-input {
+  height: 10px;
+}
 .newTag {
   margin-right: 5px;
 }
-
+#newtag {
+  width: 80%;
+  display: inline-block;
+  float: left;
+}
 #newname {
   width: 70%;
   display: inline-block;
