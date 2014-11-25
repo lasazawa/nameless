@@ -14,7 +14,7 @@ def create
   #store to database & push more emails into email array
   @project = Project.create(project_params.merge(user_id: params[:user_id]))
   if @project.photo_url == ""
-    @project.photo_url = "http://static.squarespace.com/static/52d03994e4b0431c4901495a/t/52d194fae4b06f651ac0a8df/1389466875249/Connect%20Global%20Projects%20Icon.006.png"
+    @project.photo_url = "https://static.squarespace.com/static/52d03994e4b0431c4901495a/t/52d194fae4b06f651ac0a8df/1389466875249/Connect%20Global%20Projects%20Icon.006.png"
   end
 
   #load email arroy with user specified people
