@@ -23,7 +23,7 @@ function engine(){
                 var name = "photo.jpg";
 
                 console.log("here goes nothing...");
-                $('#pic').attr('src', "/assets/loader.gif");
+                $('#pic').attr('src', "/images/loader.gif");
 
                 var parseFile = new Parse.File(name, file);
                 parseFile.save().then(
