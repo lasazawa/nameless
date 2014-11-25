@@ -41,7 +41,7 @@
 
 		<div class="form-group">
 		<div id="tag_container" class="form-group">
-		<h4>Select of create tags related to yourself</h4>
+		<h4>Select or create tags related to yourself</h4>
 			<% @tags.each do |t| %>
 				<% if @tagged.include? t.id %>
 					<button type="button"class="tag btn btn-info btn-sm active" id="<%= t.id %>" style="margin-top:5px"><%= t.name %></button>
@@ -50,9 +50,11 @@
 				<% end %>
 			<% end %>
 		</div>
-		<input id="newtag" type="text"><button type="button" id="submittag" class="btn btn-sm btn-success">Submit</button>
+		<div class="form-group tag-input">
+			<input id="newtag" type="text" class="form-control"><button type="button" id="submittag" class="left btn btn-success">Submit</button>
 		<input type="hidden" name="tags" id="tagsinput" value="">
-
+		</div>
+<br>
       <!-- photo upload -->
       <h4>Upload photos</h4>
       <img id="pic" src="<%= @user.picurl %>" height="120" width="120">
