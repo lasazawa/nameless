@@ -45,6 +45,9 @@ gem 'braintree'
 # gem 'debugger', group: [:development, :test]
 gem 'handlebars_assets'
 
+group :development, :test do
+  gem 'dotenv-rails'
+end
 
 group :production do
   gem 'rails_12factor'
