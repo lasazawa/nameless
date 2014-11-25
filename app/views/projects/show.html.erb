@@ -164,9 +164,11 @@ $(document).ready(function(){
   $(document).ready(function(){
       //add a comment
 
-      $("#comment-input").keypress(function (e){
+      $("#comment-input").keydown(function (e){
       if (e.which == 13 ){
-        event.preventDefault();
+
+        e.defaultPrevented
+
         if ($("#comment-input").val() !== "") {
           console.log("comment-input")
           var postData = {comment: {body: $('#comment-input').val()}}
